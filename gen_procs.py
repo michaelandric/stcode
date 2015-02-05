@@ -6,7 +6,8 @@ from glob import glob
 
 subjects = ["ANGO", "MYTP","TRCO","PIGL","SNNW","LDMW","FLTM","EEPA","DNLN","CRFO","ANMS","MRZM","MRVV","MRMK","MRMC","MRAG","MNGO","LRVN","CLFR"]
 
-def make_dirs(ss, newdir):
+def make_dirs(newdir):
+    print newdir+' is the new directory'
     if not os.path.exists(newdir):
         os.makedirs(newdir)
 
@@ -21,8 +22,7 @@ def generate_batchargs(args):
 if __name__ == "__main__":
 
     for ss in subjects:
-        nd = '/mnt/lnif-storage/urihas/MAstdstt/%s' % ss
-        make_dirs(ss, nd)
-        filelist = glob('/mnt/lnif-storage/urihas/MAstdstt/TS_files/*%s*' % ss)
-        for f in filelist:
-            file_mover(f, nd)
+        nd = '/mnt/lnif-storage/urihas/MAstdstt/%s/graphs' % ss
+        make_dirs(nd)
+        nd = '/mnt/lnif-storage/urihas/MAstdstt/%s/stdout_files' % ss
+        make_dirs(nd)
