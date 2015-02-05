@@ -7,8 +7,10 @@ from glob import glob
 subjects = ["ANGO", "MYTP","TRCO","PIGL","SNNW","LDMW","FLTM","EEPA","DNLN","CRFO","ANMS","MRZM","MRVV","MRMK","MRMC","MRAG","MNGO","LRVN","CLFR"]
 
 def make_dirs(newdir):
-    print newdir+' is the new directory'
+    if os.path.exists(newdir):
+        print newdir+' --> This already exists!'
     if not os.path.exists(newdir):
+        print newdir+' is the new directory'
         os.makedirs(newdir)
 
 def file_mover(file, destination):
