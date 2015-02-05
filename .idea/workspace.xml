@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e109157b-4766-4bcc-afd6-30b73cc3cb89" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/1.corr_mats.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/1.corr_mats.py" afterPath="$PROJECT_DIR$/1.corr_mats.py" />
     </list>
     <ignored path="stcode.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,8 +29,8 @@
       <file leaf-file-name="1.corr_mats.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/1.corr_mats.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.40271494" vertical-offset="716" max-vertical-offset="1600">
-              <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+            <state vertical-scroll-proportion="-0.42533937" vertical-offset="716" max-vertical-offset="1600">
+              <caret line="17" column="15" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="15" />
               <folding>
                 <element signature="e#25#44#0" expanded="true" />
               </folding>
@@ -305,8 +305,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/1.corr_mats.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.40271494" vertical-offset="716" max-vertical-offset="1600">
-          <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+        <state vertical-scroll-proportion="-0.42533937" vertical-offset="716" max-vertical-offset="1600">
+          <caret line="17" column="15" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="15" />
           <folding>
             <element signature="e#25#44#0" expanded="true" />
           </folding>
