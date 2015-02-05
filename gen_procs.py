@@ -19,7 +19,7 @@ def file_mover(file, destination):
 
 def generate_batchargs(arg1, arg2, arg3):
     """sample usage:
-    $ python gen_procs.py >> ../submitdir/submit_1.corr_mats.py
+    $ python gen_procs.py >> ../submitdir/submit_1.corr_mats
     """
     print 'arguments    = %s %s %s \nqueue \n' % (arg1, arg2, arg3)
 
