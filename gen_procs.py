@@ -22,7 +22,7 @@ def generate_batchargs(arg1, arg2, arg3):
     """sample usage:
     $ python gen_procs.py >> ../submitdir/submit_1.corr_mats
     """
-    print 'arguments    = %s %s %s \nqueue \n' % (arg1, arg2, arg3)
+    print 'arguments    = /mnt/lnif-storage/urihas/MAstdstt/stcode/1.corr_mats.py %s %s %s \nqueue \n' % (arg1, arg2, arg3)
 
 
 if __name__ == "__main__":
