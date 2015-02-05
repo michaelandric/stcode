@@ -5,7 +5,8 @@ import shutil
 from glob import glob
 
 #subjects = ["ANGO", "MYTP","TRCO","PIGL","SNNW","LDMW","FLTM","EEPA","DNLN","CRFO","ANMS","MRZM","MRVV","MRMK","MRMC","MRAG","MNGO","LRVN","CLFR"]
-subjects = ["ANGO"]   # trying on one person
+subjects = ["MYTP","TRCO","PIGL","SNNW","LDMW","FLTM","EEPA","DNLN","CRFO"]
+#subjects = ["ANMS","MRZM","MRVV","MRMK","MRMC","MRAG","MNGO","LRVN","CLFR"]
 
 def make_dirs(newdir):
     if os.path.exists(newdir):
