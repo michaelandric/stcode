@@ -29,8 +29,8 @@
       <file leaf-file-name="1.corr_mats.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/1.corr_mats.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.42533937" vertical-offset="716" max-vertical-offset="1600">
-              <caret line="17" column="15" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="15" />
+            <state vertical-scroll-proportion="0.479638" vertical-offset="256" max-vertical-offset="1600">
+              <caret line="34" column="48" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
               <folding>
                 <element signature="e#25#44#0" expanded="true" />
               </folding>
@@ -305,8 +305,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/1.corr_mats.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.42533937" vertical-offset="716" max-vertical-offset="1600">
-          <caret line="17" column="15" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="15" />
+        <state vertical-scroll-proportion="0.479638" vertical-offset="256" max-vertical-offset="1600">
+          <caret line="34" column="48" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
           <folding>
             <element signature="e#25#44#0" expanded="true" />
           </folding>

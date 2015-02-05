@@ -32,7 +32,7 @@ class GRAPHS:
         print 'Starting sort. -- '+datetime.datetime.today().strftime(self.tformat)
         corrsrtd = np.sort(corrmatUT[corrmatUT !=0], kind='mergesort')
         print 'Sort done. \nThresholding... -- '+datetime.datetime.today().strftime(self.tformat)
-        threshd = corrsrtd[int(len(corrsrtd)*(1-self.dens)):]
+        threshd = corrsrtd[int(len(corrsrtd)*(1.-float(self.dens))):]
         print 'Thresholding done. \nNow getting edge indices -- '+datetime.datetime.today().strftime(self.tformat)
         ix = np.in1d(corrmatUT.ravel(), threshd).reshape(corrmatUT.shape)
         inds = zip(np.where(ix)[0], np.where(ix)[1])
