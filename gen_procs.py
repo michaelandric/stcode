@@ -6,7 +6,8 @@ from glob import glob
 
 #subjects = ["ANGO", "MYTP","TRCO","PIGL","SNNW","LDMW","FLTM","EEPA","DNLN","CRFO","ANMS","MRZM","MRVV","MRMK","MRMC","MRAG","MNGO","LRVN","CLFR"]
 #subjects = ["MYTP","TRCO","PIGL","SNNW","LDMW","FLTM","EEPA","DNLN","CRFO"]
-subjects = ["ANMS","MRZM","MRVV","MRMK","MRMC","MRAG","MNGO","LRVN","CLFR"]
+#subjects = ["ANMS","MRZM","MRVV","MRMK","MRMC","MRAG","MNGO","LRVN","CLFR"]
+subjects = ['DNLN', 'CRFO', 'ANMS', 'MRMK', 'MRMC', 'MRAG', 'LRVN', 'CLFR']   # these subjects were hung on 31, James was trying to do DTI stuff, shit was clogged. 
 
 def make_dirs(newdir):
     if os.path.exists(newdir):
