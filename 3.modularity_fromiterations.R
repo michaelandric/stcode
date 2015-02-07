@@ -24,7 +24,7 @@ for (de in densities)
             {
                 modscores <- c(modscores, as.matrix(read.table(f)))
             }
-            mod_data <- c(mod_data, max(modscores))
+            mod_data <- c(mod_data, sort(modscores)[51])
             stddev_data <- c(stddev_data, sd(modscores))
             subject_frame <- c(subject_frame, ss)
             condition_frame <- c(condition_frame, paste("cond",i,sep=""))
