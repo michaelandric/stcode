@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e109157b-4766-4bcc-afd6-30b73cc3cb89" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen_procs.py" afterPath="$PROJECT_DIR$/gen_procs.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="stcode.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,8 +41,8 @@
       <file leaf-file-name="gen_procs.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gen_procs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7239819" vertical-offset="0" max-vertical-offset="900">
-              <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.18099548" vertical-offset="0" max-vertical-offset="900">
+              <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
               <folding>
                 <element signature="e#25#34#0" expanded="true" />
               </folding>
@@ -382,8 +381,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gen_procs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7239819" vertical-offset="0" max-vertical-offset="900">
-          <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.18099548" vertical-offset="0" max-vertical-offset="900">
+          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
           <folding>
             <element signature="e#25#34#0" expanded="true" />
           </folding>
