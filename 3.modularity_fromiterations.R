@@ -1,6 +1,7 @@
 # evaluate modularity values with repeated measures ANOVA (Friedman) 
 # taken from 
 # https://github.com/michaelandric/steadystate/blob/master/modularity_conn/72.modularity_fromiterationsMAX.R
+writeLines(paste('Evaluating modularity Q vals with non-parametric repeated measures \nWorking dir:',getwd(),'\n',date(),'\n'), sep ="")
 subjects <- c("ANGO","CLFR","MYTP","TRCO","PIGL","SNNW","LDMW","FLTM","EEPA","DNLN","CRFO","ANMS","MRZM","MRVV","MRMK","MRMC","MRAG","MNGO","LRVN")
 conditions <- seq(4)
 densities <- c('0.05')
