@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e109157b-4766-4bcc-afd6-30b73cc3cb89" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/2.modularity_evaluation.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen_procs.py" afterPath="$PROJECT_DIR$/gen_procs.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="stcode.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gen_procs.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="gen_procs.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gen_procs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="840">
-              <caret line="24" column="93" selection-start-line="24" selection-start-column="93" selection-end-line="24" selection-end-column="93" />
+            <state vertical-scroll-proportion="0.7239819" vertical-offset="0" max-vertical-offset="900">
+              <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
               <folding>
                 <element signature="e#25#34#0" expanded="true" />
               </folding>
@@ -51,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2.modularity_evaluation.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="2.modularity_evaluation.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/2.modularity_evaluation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7239819" vertical-offset="0" max-vertical-offset="884">
-              <caret line="32" column="59" selection-start-line="32" selection-start-column="59" selection-end-line="32" selection-end-column="59" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="760">
+              <caret line="30" column="34" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="34" />
               <folding>
                 <element signature="e#25#35#0" expanded="true" />
               </folding>
@@ -370,22 +370,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gen_procs.py">
+    <entry file="file://$PROJECT_DIR$/2.modularity_evaluation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="840">
-          <caret line="24" column="93" selection-start-line="24" selection-start-column="93" selection-end-line="24" selection-end-column="93" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="760">
+          <caret line="30" column="34" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="34" />
           <folding>
-            <element signature="e#25#34#0" expanded="true" />
+            <element signature="e#25#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2.modularity_evaluation.py">
+    <entry file="file://$PROJECT_DIR$/gen_procs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7239819" vertical-offset="0" max-vertical-offset="884">
-          <caret line="32" column="59" selection-start-line="32" selection-start-column="59" selection-end-line="32" selection-end-column="59" />
+        <state vertical-scroll-proportion="0.7239819" vertical-offset="0" max-vertical-offset="900">
+          <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
           <folding>
-            <element signature="e#25#35#0" expanded="true" />
+            <element signature="e#25#34#0" expanded="true" />
           </folding>
         </state>
       </provider>

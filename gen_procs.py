@@ -5,7 +5,7 @@ import shutil
 from glob import glob
 
 #subjects = ["ANGO", "MYTP","TRCO","PIGL","SNNW","LDMW","FLTM","EEPA","DNLN","CRFO","ANMS","MRZM","MRVV","MRMK","MRMC","MRAG","MNGO","LRVN","CLFR"]
-#subjects = ["MYTP","TRCO","PIGL","SNNW","LDMW","FLTM","EEPA","DNLN","CRFO"]
+subjects = ["MYTP","TRCO","PIGL","SNNW","LDMW","FLTM","EEPA","DNLN","CRFO"]
 #subjects = ["ANMS","MRZM","MRVV","MRMK","MRMC","MRAG","MNGO","LRVN","CLFR"]
 
 def make_dirs(newdir):
@@ -28,7 +28,7 @@ def generate_batchargs(arg1, arg2, arg3):
 if __name__ == "__main__":
 
     td = 0.05   # thresh density
-    for ss in ['ANGO']:
+    for ss in subjects:
         for d in ['trees', 'Qvals']:
             ndir = '/mnt/lnif-storage/urihas/MAstdstt/%s/%s' % (ss, d)
             make_dirs(ndir)
