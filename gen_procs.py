@@ -29,6 +29,9 @@ if __name__ == "__main__":
 
     td = 0.05   # thresh density
     for ss in ['ANGO']:
+        for d in ['trees', 'Qvals']:
+            ndir = '/mnt/lnif-storage/urihas/MAstdstt/%s/%s' % (ss, d)
+            make_dirs(ndir)
         for c in xrange(1,5):
             generate_batchargs(ss, c, td)
 
