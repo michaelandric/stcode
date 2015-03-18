@@ -77,13 +77,13 @@ def network_evaluations(subj_list, density):
     n_mods_chi, n_mods_p = friedmanchisquare(n_mods_array[:, 0], n_mods_array[:, 1], n_mods_array[:, 2], n_mods_array[:, 3])
     n_mod_out_report.append('Friedman test result -- ChiSq: %s, p-val: %s' % (n_mods_chi, n_mods_p))
 
-    combos = combinations(range(1, 5), 2)   # every pair of conditions
+    combos = combinations(range(4), 2)   # every pair of conditions
     print 'Wilcox tests.. %s' % time.ctime()
     for co in combos:
         qstat, qp = wilcoxon(q_value_array[:, co[0]], q_value_array[:, co[1]])
-        q_out_report.append('Wilcoxon on conditions %s and %s: %s, p-val %s' % (co[0], co[1], qstat, qp))
+        q_out_report.append('Wilcoxon on conditions %s and %s: %s, p-val %s' % (co[0]+1, co[1]+1, qstat, qp))
         nstat, nmods_p = wilcoxon(n_mods_array[:, co[0]], n_mods_array[:, co[1]])
-        n_mod_out_report.append('Wilcoxon on conditions %s and %s: %s, p-val %s' % (co[0], co[1], nstat, nmods_p))
+        n_mod_out_report.append('Wilcoxon on conditions %s and %s: %s, p-val %s' % (co[0]+1, co[1]+1, nstat, nmods_p))
 
     return (q_out_report, n_mod_out_report)
 
