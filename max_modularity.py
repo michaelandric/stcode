@@ -62,9 +62,9 @@ def network_evaluations(subj_list, density):
     iter_array = np.zeros(len(subj_list*4)).reshape(len(subj_list), 4)
 
     for ss in enumerate(subj_list):
-        subj_dir = '%s/%s/modularity%s' % (os.environ['state'], ss, density)
+        subj_dir = '%s/%s/modularity%s' % (os.environ['state'], ss[1], density)
         for cc in xrange(4):   # the four conditions
-            me = modularity_evaluation(subj_dir, ss, cc+1, density)
+            me = modularity_evaluation(subj_dir, ss[1], cc+1, density)
             q_value_array[ss[0], cc], iter_array[ss[0], cc] = me.max_q()
             n_mods_array[ss[0], cc] = me.n_modules()
 
