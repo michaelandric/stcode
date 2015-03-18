@@ -73,17 +73,17 @@ def network_evaluations(subj_list, density):
 
     print 'Doing tests \nFriedman chi square... %s' % time.ctime()
     q_vals_chi, q_vals_p = friedmanchisquare(q_value_array[:, 0], q_value_array[:, 1], q_value_array[:, 2], q_value_array[:, 3])
-    q_out_report.append('Friedman test result -- ChiSq: %s, p-val: %s' % (q_vals_chi, q_vals_p))
+    q_out_report.append('Density %s, Friedman test result -- ChiSq: %s, p-val: %s' % (density, q_vals_chi, q_vals_p))
     n_mods_chi, n_mods_p = friedmanchisquare(n_mods_array[:, 0], n_mods_array[:, 1], n_mods_array[:, 2], n_mods_array[:, 3])
-    n_mod_out_report.append('Friedman test result -- ChiSq: %s, p-val: %s' % (n_mods_chi, n_mods_p))
+    n_mod_out_report.append('Density %s, Friedman test result -- ChiSq: %s, p-val: %s' % (density, n_mods_chi, n_mods_p))
 
     combos = combinations(range(4), 2)   # every pair of conditions
     print 'Wilcox tests.. %s' % time.ctime()
     for co in combos:
         qstat, qp = wilcoxon(q_value_array[:, co[0]], q_value_array[:, co[1]])
-        q_out_report.append('Wilcoxon on conditions %s and %s: %s, p-val %s' % (co[0]+1, co[1]+1, qstat, qp))
+        q_out_report.append('Density %s, Wilcoxon on conditions %s and %s: %s, p-val %s' % (density, co[0]+1, co[1]+1, qstat, qp))
         nstat, nmods_p = wilcoxon(n_mods_array[:, co[0]], n_mods_array[:, co[1]])
-        n_mod_out_report.append('Wilcoxon on conditions %s and %s: %s, p-val %s' % (co[0]+1, co[1]+1, nstat, nmods_p))
+        n_mod_out_report.append('Density %s, Wilcoxon on conditions %s and %s: %s, p-val %s' % (density, co[0]+1, co[1]+1, nstat, nmods_p))
 
     return (q_value_array, n_mods_array, q_out_report, n_mod_out_report)
 
@@ -94,7 +94,7 @@ if __name__ == '__main__':
 
     for density in ['5p', '8p', '12p', '15p']:
         qs_array, nmods_array, qs_rep, nmods_rep = network_evaluations(subj_list, density)
-    
+
         outf = open('%s/max_q_values_density%s_report.txt' % (os.environ['interim_state'], density), 'w')
         outf.write('\n'.join(qs_rep))
         outf.close()
