@@ -95,9 +95,9 @@ if __name__ == '__main__':
 
     qs_rep, nmods_rep = network_evaluations(subj_list, density)
 
-    outf = open('%s/q_values_density%s_report.txt' % (os.environ['interim_state'], density))
+    outf = open('%s/q_values_density%s_report.txt' % (os.environ['interim_state'], density), 'w')
     outf.write('\n'.join(qs_rep))
     outf.close()
-    outf = open('%s/n_mods_density%s_report.txt' % (os.environ['interim_state'], density))
+    outf = open('%s/n_mods_density%s_report.txt' % (os.environ['interim_state'], density), 'w')
     outf.write('\n'.join(nmods_rep))
     outf.close()
