@@ -66,7 +66,7 @@ if __name__ == "__main__":
 
     os.chdir('/mnt/lnif-storage/urihas/MAstdstt/%s' % subjid)
     print os.getcwd()
-    graph_outname = '/mnt/lnif-storage/urihas/MAstdstt/%s/graphs/%s.%s.dens_%s.edgelist' % (subjid, subjid, condition, thresh_density)
+    graph_outname = '/mnt/lnif-storage/urihas/MAstdstt/%s/graphs/TEST%s.%s.dens_%s.edgelist' % (subjid, subjid, condition, thresh_density)
     GR = GRAPHS(subjid, condition, thresh_density)
     GR.make_graph(graph_outname)
     GR.convert_graph(graph_outname)
