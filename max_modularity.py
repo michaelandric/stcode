@@ -85,7 +85,7 @@ def network_evaluations(subj_list, density):
         nstat, nmods_p = wilcoxon(n_mods_array[:, co[0]], n_mods_array[:, co[1]])
         n_mod_out_report.append('Wilcoxon on conditions %s and %s: %s, p-val %s' % (co[0]+1, co[1]+1, nstat, nmods_p))
 
-    return (q_out_report, n_mod_out_report)
+    return (q_value_array, n_mods_arrary, q_out_report, n_mod_out_report)
 
 
 if __name__ == '__main__':
@@ -93,11 +93,13 @@ if __name__ == '__main__':
     subj_list = ['ANGO', 'CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW', 'LDMW', 'FLTM', 'EEPA', 'DNLN', 'CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK', 'MRMC', 'MRAG', 'MNGO', 'LRVN']
     density = '5p'
 
-    qs_rep, nmods_rep = network_evaluations(subj_list, density)
+    qs_array, nmods_array, qs_rep, nmods_rep = network_evaluations(subj_list, density)
 
-    outf = open('%s/q_values_density%s_report.txt' % (os.environ['interim_state'], density), 'w')
+    outf = open('%s/max_q_values_density%s_report.txt' % (os.environ['interim_state'], density), 'w')
     outf.write('\n'.join(qs_rep))
     outf.close()
-    outf = open('%s/n_mods_density%s_report.txt' % (os.environ['interim_state'], density), 'w')
+    outf = open('%s/max_q_n_mods_density%s_report.txt' % (os.environ['interim_state'], density), 'w')
     outf.write('\n'.join(nmods_rep))
     outf.close()
+    np.savetxt('%s/max_q_values_density%s_array.txt' % (os.environ['interim_state'], density), qs_array, fmt='%.4f')
+    np.savetxt('%s/max_q_n_mods_density%s_array.txt' % (os.environ['interim_state'], density), nmods_array, fmt='%i')
