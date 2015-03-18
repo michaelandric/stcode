@@ -5,6 +5,7 @@ Created on Wed Mar 18 13:19:47 2015
 @author: andric
 """
 import os
+import time
 import numpy as np
 from collections import Counter
 from scipy.stats import friedmanchisquare, wilcoxon
@@ -14,16 +15,22 @@ from itertools import combinations
 class modularity_evaluation:
 
     def __init__(self, directory, subject, condition, density):
-        self.ss = subject
+        print 'Initializing modularity evaluation -- %s' % time.ctime()
+        self.subjid = subject
+        print 'Subject: %s' % self.subjid
         self.cc = condition
+        print 'Condition: %s' % self.cc
         self.dens = density
+        print 'Density: %s' % self.dens
         self.dir = directory
+        print 'Directory: %s' % self.dir
 
     def max_q(self):
         """
         Get the maximum modularity value
         :param directory: In each directory is 100 Qval files
         """
+        print 'Getting max q value -- %s' % time.ctime()
         q_vals = np.zeros(100)
         for i in xrange(100):
             fname = 'iter%d.%s.%d.%s_r0.5_linksthresh_proportion.out.Qval' % (i+1, self.subjid, self.cc, self.dens)
@@ -36,6 +43,7 @@ class modularity_evaluation:
         """
         Get the number of modules
         """
+        print 'Getting number of modules -- %s' % time.ctime()
         n_mods = np.zeros(100)
         tname = 'iter%d.%s.%d.%s_r0.5_linksthresh_proportion.out.maxlevel_tree' % (self.iter_max, self.subjid, self.cc, self.dens)
         tree = np.genfromtxt(os.path.join(self.dir, tname))
@@ -63,12 +71,14 @@ def network_evaluations(subj_list, density):
     q_out_report = []
     n_mod_out_report = []
 
+    print 'Doing tests \nFriedman chi square... %s' % time.ctime()
     q_vals_chi, q_vals_p = friedmanchisquare(q_value_array[:, 0], q_value_array[:, 1], q_value_array[:, 2], q_value_array[:, 3])
     q_out_report.append('Friedman test result -- ChiSq: %s, p-val: %s' % (q_vals_chi, q_vals_p))
     n_mods_chi, n_mods_p = friedmanchisquare(n_mods_array[:, 0], n_mods_array[:, 1], n_mods_array[:, 2], n_mods_array[:, 3])
     n_mod_out_report.append('Friedman test result -- ChiSq: %s, p-val: %s' % (n_mods_chi, n_mods_p))
 
     combos = combinations(range(1, 5), 2)   # every pair of conditions
+    print 'Wilcox tests.. %s' % time.ctime()
     for co in combos:
         qstat, qp = wilcoxon(q_value_array[:, co[0]], q_value_array[:, co[1]])
         q_out_report.append('Wilcoxon on conditions %s and %s: %s, p-val %s' % (co[0], co[1], qstat, qp))
