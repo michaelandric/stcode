@@ -11,7 +11,7 @@ import numpy as np
 from collections import Counter
 
 
-def max_q(subjid, cc, dens, directory):
+def max_q(directory, subjid, cc, dens):
     """
     Get the maximum modularity value
     :param subjid: Subject identifier
