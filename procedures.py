@@ -6,6 +6,7 @@ Created on Mon Mar 23 12:28:34 2015
 """
 
 import os
+import time
 import numpy as np
 from shlex import split
 from subprocess import call, STDOUT
@@ -20,6 +21,7 @@ def undump(subjid, ijk_coords, datafilename, data_dir, master_file):
     :param master_file: The master file for AFNI voxel resolution. GIVE FULL PATH
     Writes AFNI format Undumped file
     """
+    print 'Doing undump... \nFirst pasting ijk to data -- %s' % time.ctime()
     ijkfile = np.genfromtxt(ijk_coords)
     data = np.genfromtxt(os.path.join(data_dir, datafilename))
     data_ijk_outname = '%s.ijk' % os.path.join(data_dir, datafilename)
@@ -28,11 +30,12 @@ def undump(subjid, ijk_coords, datafilename, data_dir, master_file):
     stdout_dir = 'stdout_files'
     if not os.path.exists(os.path.join(data_dir, stdout_dir)):
         os.makedirs(os.path.join(data_dir, stdout_dir))
-    # mstr = '%s/%s/blur.1.%s.steadystate.TRIM+orig' % (os.environ['state_rec'], subjid, subjid)
+    print 'Doing 3dUndump... %s' % time.ctime()
     f = open('%s/stdout_files/stdout_from_undump.txt' % data_dir, 'w')
     cmdargs = split('3dUndump -prefix %s -ijk -datum %s -master %s %s' % (data_ijk_outname, 'float', master_file, data_ijk_outname))
     call(cmdargs, stdout=f, stderr=STDOUT)
     f.close()
+    print 'Finished undump -- %s' % time.ctime()
 
 
 def autotlrc(subjid, tlrc_brain, afni_data, data_dir):
@@ -43,6 +46,7 @@ def autotlrc(subjid, tlrc_brain, afni_data, data_dir):
     :param data_dir: Where data live
     Writes out AFNI format file in group space
     """
+    print 'Doing autotlrc  -- %s' % time.ctime()
     stdout_dir = 'stdout_files'
     if not os.path.exists(os.path.join(data_dir, stdout_dir)):
         os.makedirs(os.path.join(data_dir, stdout_dir))
@@ -51,3 +55,4 @@ def autotlrc(subjid, tlrc_brain, afni_data, data_dir):
     cmdargs = split('@auto_tlrc -apar %s -input %s -dxyz 2' % (tlrc_brain, afni_input))
     call(cmdargs, stdout=f, stderr=STDOUT)
     f.close()
+    print 'Finished autotrlc -- %s' % time.ctime()
