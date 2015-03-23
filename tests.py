@@ -28,7 +28,8 @@ def snsc_evaluation(ss, outdir, density):
 if __name__ == '__main__':
 
     subj_list = ['ANGO', 'CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW', 'LDMW', 'FLTM', 'EEPA', 'DNLN', 'CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK', 'MRMC', 'MRAG', 'MNGO', 'LRVN']
-    outdir = os.environ['t2']+'/state/snsc_results'
+    outdir = os.environ['t2']+'/state/snsc_results/'
     for ss in subj_list:
         snsc_res = snsc_evaluation(ss, outdir, '5p')
-        np.savetxt(os.path.join(outdir, '/snsc_%s.txt' % ss), snsc_res, fmt='%.4f')
+        outpref = 'snsc_%s.txt' % ss
+        np.savetxt(os.path.join(outdir, outpref), snsc_res, fmt='%.4f')
