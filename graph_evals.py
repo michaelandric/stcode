@@ -77,6 +77,38 @@ def snsc(input1, input2):
     return preservation
 
 
+def snsc_MRAG(input1, input2):
+    """
+    Get Single Node Set Consistency (SNSC) between two partitions
+    Each input is a separate file, result of tree output from modularity function
+    """
+    input1 = np.genfromtxt(input1)
+    input2 = np.genfromtxt(input2)
+    coms1 = input1[:, input1.shape[1]-1]
+    coms2 = input2[:, input2.shape[1]-1]
+    if len(coms1) < len(coms2):
+        coms1 = np.append(coms1, coms1[len(coms1)-1])
+    elif len(coms2) < len(coms1):
+        coms2 = np.append(coms2, coms2[len(coms2)-1])
+    mod_dict1 = {}
+    mod_dict2 = {}
+    for i in np.unique(coms1):
+        mod_dict1[i] = [v for v, c in enumerate(coms1) if c == i]
+    for i in np.unique(coms2):
+        mod_dict2[i] = [v for v, c in enumerate(coms2) if c == i]
+
+    preservation = np.zeros(len(coms2))
+    """Return 777 if the community includes less than 20 voxels """
+    for i in xrange(len(coms2)):
+        if len(mod_dict2[coms2[i]]) < 20 or len(mod_dict1[coms1[i]]) < 20:
+            preservation[i] = 777
+        else:
+            inter = len(set(mod_dict2[coms2[i]]).intersection(set(mod_dict1[coms1[i]])))
+            preservation[i] = inter / float(len(mod_dict2[coms2[i]]))
+
+    return preservation
+
+
 def dummyvar(cis, return_sparse=False):
     '''
     This is an efficient implementation of matlab's "dummyvar" command
