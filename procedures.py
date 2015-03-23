@@ -53,7 +53,7 @@ def autotlrc(subjid, tlrc_brain, afni_data, data_dir):
     if not os.path.exists(stdout_dir):
         os.makedirs(stdout_dir)
     f = open('stdout_files/stdout_from_autotlrc.txt', 'w')
-    cmdargs = split('@auto_tlrc -apar %s -input %s -dxyz 2' % (tlrc_brain, afni_data))
+    cmdargs = split('@auto_tlrc -apar %s -input %s -rmode NN -dxyz 2' % (tlrc_brain, afni_data))
     call(cmdargs, stdout=f, stderr=STDOUT)
     f.close()
     print 'Finished autotrlc -- %s' % time.ctime()
