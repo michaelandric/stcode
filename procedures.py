@@ -9,7 +9,7 @@ import os
 import time
 import numpy as np
 from shlex import split
-from subprocess import call, STDOUT
+from subprocess import call, STDOUT, Popen
 
 
 def gen_condor_submit_args(arg_list):
@@ -81,3 +81,16 @@ def nwarpapply(nwarp_algn_brain, affn_trans, afni_data, outpref, data_dir):
     call(cmdargs, stdout=f, stderr=STDOUT)
     f.close()
     print 'Finished NWARP -- %s' % time.ctime()
+
+
+def maskdump(mask, datafilename, out_dir):
+    """
+    """
+    print 'Doing maskdump -- %s' % time.ctime()
+    stdout_dir = 'stdout_files'
+    if not os.path.exists(stdout_dir):
+        os.makedirs(stdout_dir)
+    # f = open('%s/stdout_from_nwarpapply.txt' % stdout_dir, 'w')
+    cmdargs = split('3dmaskdump -mask %s %s' % (mask, datafilename))
+    dump_out = Popen(cmdargs, stdout=PIPE).communicate()
+    f = open('%s/')

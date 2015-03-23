@@ -12,8 +12,8 @@ import procedures as procs
 
 if __name__ == '__main__':
 
-    subj_list = ['CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW', 'LDMW', 'FLTM', 'EEPA', 'DNLN']
-    # subj_list = ['CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK', 'MRMC', 'MNGO', 'LRVN']
+    # subj_list = ['CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW', 'LDMW', 'FLTM', 'EEPA', 'DNLN']
+    subj_list = ['CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK', 'MRMC', 'MNGO', 'LRVN']
     # subj_list = ['ANGO']
     """for ss in subj_list:
         arglist = []
