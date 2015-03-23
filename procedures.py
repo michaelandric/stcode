@@ -47,12 +47,13 @@ def autotlrc(subjid, tlrc_brain, afni_data, data_dir):
     Writes out AFNI format file in group space
     """
     print 'Doing autotlrc  -- %s' % time.ctime()
+    os.chdir(data_dir)   # @auto_tlrc requires you to be in current directory of data
+    print os.getcwd()
     stdout_dir = 'stdout_files'
-    if not os.path.exists(os.path.join(data_dir, stdout_dir)):
-        os.makedirs(os.path.join(data_dir, stdout_dir))
-    afni_input = os.path.join(data_dir, afni_data)
-    f = open('%s/stdout_files/stdout_from_undump.txt' % data_dir, 'w')
-    cmdargs = split('@auto_tlrc -apar %s -input %s -dxyz 2' % (tlrc_brain, afni_input))
+    if not os.path.exists(stdout_dir):
+        os.makedirs(stdout_dir)
+    f = open('stdout_files/stdout_from_autotlrc.txt', 'w')
+    cmdargs = split('@auto_tlrc -apar %s -input %s -dxyz 2' % (tlrc_brain, afni_data))
     call(cmdargs, stdout=f, stderr=STDOUT)
     f.close()
     print 'Finished autotrlc -- %s' % time.ctime()
