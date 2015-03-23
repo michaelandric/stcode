@@ -9,7 +9,7 @@ import os
 import time
 import numpy as np
 from shlex import split
-from subprocess import call, STDOUT, Popen
+from subprocess import call, STDOUT, Popen, PIPE
 
 
 def gen_condor_submit_args(arg_list):
@@ -83,7 +83,7 @@ def nwarpapply(nwarp_algn_brain, affn_trans, afni_data, outpref, data_dir):
     print 'Finished NWARP -- %s' % time.ctime()
 
 
-def maskdump(mask, datafilename, out_dir):
+def maskdump(mask, afni_data, outname):
     """
     """
     print 'Doing maskdump -- %s' % time.ctime()
@@ -91,6 +91,29 @@ def maskdump(mask, datafilename, out_dir):
     if not os.path.exists(stdout_dir):
         os.makedirs(stdout_dir)
     # f = open('%s/stdout_from_nwarpapply.txt' % stdout_dir, 'w')
-    cmdargs = split('3dmaskdump -mask %s %s' % (mask, datafilename))
-    dump_out = Popen(cmdargs, stdout=PIPE).communicate()
-    f = open('%s/')
+    cmdargs = split('3dmaskdump -mask %s %s' % (mask, afni_data))
+    serr = open('%s/stderr_from_maskdump.txt', 'w')
+    dump_out = Popen(cmdargs, stdout=PIPE, stderr=PIPE).communicate()
+    serr.write(dump_out[1])
+    serr.close()
+    f = open('%s' % outname)
+    f.write(dump_out[0])
+    f.close()
+    print 'Finished maskdump -- %s' % time.ctime()
+
+
+def median_snsc(subj_list):
+    """
+    Get median SNSC value across participants
+    """
+    print 'Getting median SNSC -- %s' % time.ctime()
+    for ss in enumerate(subj_list):
+        afni_data = '%s/'
+        cmdargs = split('3dmaskdump -mask %s %s' % (mask, afni_data))
+        dump_out = Popen(cmdargs, stdout=PIPE).communicate()
+        out_dump = [dd for dd in dump_out[0].split('\n')]
+        snsc_vals = np.array(np.zeros((len(out_dump)-1)*len(subj_list)))
+        snsc_vals = snsc_vals.reshape(len(out_dump)-1, len(subj_list))
+        for i in xrange(len(out_dump)-1):
+            snsc_vals[i] = out_dump[i].split()[3]
+    
