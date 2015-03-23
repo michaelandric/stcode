@@ -15,7 +15,7 @@ if __name__ == '__main__':
     # subj_list = ['CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW', 'LDMW', 'FLTM', 'EEPA', 'DNLN']
     # subj_list = ['CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK', 'MRMC', 'MNGO', 'LRVN']
     # subj_list = ['ANGO']
-    subj_list = ['MRAG']
+    subj_list = ['MRAG', 'TRCO']
     """for ss in subj_list:
         arglist = []
         arglist.append('run_procs.py')
