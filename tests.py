@@ -27,17 +27,9 @@ def snsc_evaluation(ss, outdir, density):
     else:
         return ge.snsc(input1, input2)
 
-
 if __name__ == '__main__':
 
-    # subj_list = ['ANGO', 'CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW', 'LDMW', 'FLTM', 'EEPA', 'DNLN', 'CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK', 'MRMC', 'MNGO', 'LRVN']
+    subj_list = ['ANGO', 'CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW', 'LDMW', 'FLTM', 'EEPA', 'DNLN', 'CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK', 'MRMC', 'MRAG', 'MNGO', 'LRVN']
     outdir = os.environ['t2']+'/state/snsc_results/'
-    """for ss in subj_list:
-        snsc_res = snsc_evaluation(ss, outdir, '5p')
-        outpref = 'snsc_%s.txt' % ss
-        np.savetxt(os.path.join(outdir, outpref), snsc_res, fmt='%.4f')"""
-
-    # MRAG is special, shy 1 voxel
-    mrag_res = snsc_evaluation('MRAG', outdir, '5p')
-    outpref = 'snsc_MRAG.txt'
-    np.savetxt(os.path.join(outdir, outpref), mrag_res, fmt='%.4f')
+    outname = 'snsc_group_median.txt'
+    np.savetxt(os.path.join(outdir, outname), ge.median_snsc(subj_list), fmt='%.4f')

@@ -9,6 +9,8 @@ import time
 import os
 import numpy as np
 from collections import Counter
+from shlex import split
+from subprocess import Popen, PIPE
 
 
 def max_q(directory, subjid, cc, dens):
@@ -114,15 +116,20 @@ def median_snsc(subj_list):
     Get median SNSC value across participants
     """
     print 'Getting median SNSC -- %s' % time.ctime()
+    snsc_vals = np.zeros((231203, len(subj_list)))
+    print 'snsc_vals shape: %s' % snsc_vals.shape
+    mask = '%s/groupstats/automask_d1_TTavg152T1+tlrc' % os.environ['state_rec']
+    print 'mask is \n%s' % mask
     for ss in enumerate(subj_list):
-        afni_data = '%s/'
+        print ss[1]
+        afni_data = '%s/state/snsc_results/snsc_%s.txt.ijk+tlrc' % (os.environ['t2'], ss[1])
         cmdargs = split('3dmaskdump -mask %s %s' % (mask, afni_data))
         dump_out = Popen(cmdargs, stdout=PIPE).communicate()
         out_dump = [dd for dd in dump_out[0].split('\n')]
-        snsc_vals = np.array(np.zeros((len(out_dump)-1)*len(subj_list)))
-        snsc_vals = snsc_vals.reshape(len(out_dump)-1, len(subj_list))
         for i in xrange(len(out_dump)-1):
-            snsc_vals[i] = out_dump[i].split()[3]
+            snsc_vals[i, ss[0]] = out_dump[i].split()[3]
+
+    return np.median(snsc_vals, axis=1)
 
 
 def dummyvar(cis, return_sparse=False):
