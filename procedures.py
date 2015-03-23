@@ -70,7 +70,7 @@ def nwarpapply(nwarp_algn_brain, affn_trans, afni_data, outpref, data_dir):
     if not os.path.exists(stdout_dir):
         os.makedirs(stdout_dir)
     f = open('%s/stdout_from_nwarpapply.txt' % stdout_dir, 'w')
-    cmdargs = split('3dNwarpApply -nwarp %s %s -source %s -master NWARP -ainterp NN -prefix %s' % (nwarp_algn_brain, affn_trans, afni_data, outpref))
+    cmdargs = split("3dNwarpApply -nwarp '%s %s' -source %s -master NWARP -ainterp NN -prefix %s" % (nwarp_algn_brain, affn_trans, afni_data, outpref))
     call(cmdargs, stdout=f, stderr=STDOUT)
     f.close()
     print 'Finished NWARP -- %s' % time.ctime()
