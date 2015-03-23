@@ -39,6 +39,6 @@ if __name__ == '__main__':
         np.savetxt(os.path.join(outdir, outpref), snsc_res, fmt='%.4f')
 
     # MRAG is special, shy 1 voxel
-    mrag_res = snsc_evaluation('MRAG', outdir, '5p')
-    outpref = 'snsc_MRAG.txt'
-    np.savetxt(os.path.join(outdir, outpref), snsc_res, fmt='%.4f')
+    # mrag_res = snsc_evaluation('MRAG', outdir, '5p')
+    # outpref = 'snsc_MRAG.txt'
+    # np.savetxt(os.path.join(outdir, outpref), snsc_res, fmt='%.4f')
