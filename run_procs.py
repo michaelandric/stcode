@@ -6,7 +6,7 @@ Created on Mon Mar 23 13:28:08 2015
 """
 
 import os
-import procedurs as procs
+import procedures as procs
 
 
 if __name__ == '__main__':
