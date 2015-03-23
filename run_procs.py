@@ -20,4 +20,5 @@ if __name__ == '__main__':
         mstr = '%s/%s/blur.1.%s.steadystate.TRIM+orig' % (os.environ['state_rec'], ss, ss)
         procs.undump(ss, ijks, snsc_data, data_dir, mstr)
         tlrc_brain = '%s/%s/corrTRIM_BLUR/%stlrc+tlrc' % (os.environ['state_rec'], ss, ss)
-        # procs.autotlrc(subjid, tlrc_brain, afni_data, data_dir)
+        afni_dat = '%s.ijk+orig'
+        procs.autotlrc(ss, tlrc_brain, afni_dat, data_dir)
