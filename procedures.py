@@ -57,3 +57,20 @@ def autotlrc(subjid, tlrc_brain, afni_data, data_dir):
     call(cmdargs, stdout=f, stderr=STDOUT)
     f.close()
     print 'Finished autotrlc -- %s' % time.ctime()
+
+
+def nwarpapply(nwarp_algn_brain, affn_trans, afni_data, outpref, data_dir):
+    """
+    Doing 3dNwarpApply that derives from output of 3dQwarp
+    """
+    print 'Doing nwarpapply -- %s' % time.ctime()
+    os.chdir(data_dir)
+    print os.getcwd()
+    stdout_dir = 'stdout_files'
+    if not os.path.exists(stdout_dir):
+        os.makedirs(stdout_dir)
+    f = open('%s/stdout_from_nwarpapply.txt' % stdout_dir, 'w')
+    cmdargs = split('3dNwarpApply -nwarp %s %s -source %s -master NWARP -ainterp NN -prefix %s' % (nwarp_algn_brain, affn_trans, afni_data, outpref))
+    call(cmdargs, stdout=f, stderr=STDOUT)
+    f.close()
+    print 'Finished NWARP -- %s' % time.ctime()

@@ -18,7 +18,13 @@ if __name__ == '__main__':
         snsc_data = 'snsc_%s.txt' % ss
         data_dir = '%s/state/snsc_results' % os.environ['t2']
         mstr = '%s/%s/blur.1.%s.steadystate.TRIM+orig' % (os.environ['state_rec'], ss, ss)
-        procs.undump(ss, ijks, snsc_data, data_dir, mstr)
+        # procs.undump(ss, ijks, snsc_data, data_dir, mstr)
         tlrc_brain = '%s/%s/corrTRIM_BLUR/%stlrc+tlrc' % (os.environ['state_rec'], ss, ss)
         afni_dat = '%s.ijk+orig' % snsc_data
-        procs.autotlrc(ss, tlrc_brain, afni_dat, data_dir)
+        # procs.autotlrc(ss, tlrc_brain, afni_dat, data_dir)
+
+        # Below is for running 3dNwarpApply
+        nwarp_brain = '%s/%s/masking/%s.SurfVol_Alnd_Exp_SkStAlQ_WARP+tlrc' % (os.environ['state_rec'], ss, ss)
+        affn_trans = '%s/%s/masking/%s.SurfVol_Alnd_Exp_SkStAl.aff12.1D' % (os.environ['state_rec'], ss, ss)
+        outpref = '%s_warped' % snsc_data
+        procs.nwarpapply(nwarp_brain, affn_trans, afni_dat, outpref, data_dir)
