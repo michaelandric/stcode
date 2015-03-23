@@ -1,0 +1,12 @@
+executable	= /mnt/lnif-storage/urihas/software/Python/anaconda/bin/python
+Rank        = (100-LoadAvg)
+Universe 	= vanilla
+Getenv		= true
+Output		= ./logs/run_procs.$(Process).out
+Error		= ./logs/run_procs.$(Process).err
+Log 		= ./logs/run_procs.$(Process).log
+
+
+arguments = run_procs.py ANGO 
+queue 
+

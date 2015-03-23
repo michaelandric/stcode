@@ -12,6 +12,13 @@ from shlex import split
 from subprocess import call, STDOUT
 
 
+def gen_condor_submit_args(arg_list):
+    """
+    Generate condor_submit_file arguments
+    """
+    print 'arguments = %s \nqueue \n' % ' '.join(arg_list)
+
+
 def undump(subjid, ijk_coords, datafilename, data_dir, master_file):
     """
     :param subjid: Subject identifier
