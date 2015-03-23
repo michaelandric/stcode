@@ -117,7 +117,8 @@ def median_snsc(subj_list):
     """
     print 'Getting median SNSC -- %s' % time.ctime()
     snsc_vals = np.zeros((231203, len(subj_list)))
-    print 'snsc_vals shape: %s' % snsc_vals.shape
+    print 'snsc_vals shape: \n'
+    print snsc_vals.shape
     mask = '%s/groupstats/automask_d1_TTavg152T1+tlrc' % os.environ['state_rec']
     print 'mask is \n%s' % mask
     for ss in enumerate(subj_list):
