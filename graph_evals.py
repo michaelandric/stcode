@@ -109,6 +109,22 @@ def snsc_MRAG(input1, input2):
     return preservation
 
 
+def median_snsc(subj_list):
+    """
+    Get median SNSC value across participants
+    """
+    print 'Getting median SNSC -- %s' % time.ctime()
+    for ss in enumerate(subj_list):
+        afni_data = '%s/'
+        cmdargs = split('3dmaskdump -mask %s %s' % (mask, afni_data))
+        dump_out = Popen(cmdargs, stdout=PIPE).communicate()
+        out_dump = [dd for dd in dump_out[0].split('\n')]
+        snsc_vals = np.array(np.zeros((len(out_dump)-1)*len(subj_list)))
+        snsc_vals = snsc_vals.reshape(len(out_dump)-1, len(subj_list))
+        for i in xrange(len(out_dump)-1):
+            snsc_vals[i] = out_dump[i].split()[3]
+
+
 def dummyvar(cis, return_sparse=False):
     '''
     This is an efficient implementation of matlab's "dummyvar" command
