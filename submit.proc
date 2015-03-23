@@ -10,3 +10,54 @@ Log 		= ./logs/run_procs.$(Process).log
 arguments = run_procs.py ANGO 
 queue 
 
+arguments = run_procs.py CLFR 
+queue 
+
+arguments = run_procs.py MYTP 
+queue 
+
+arguments = run_procs.py TRCO 
+queue 
+
+arguments = run_procs.py PIGL 
+queue 
+
+arguments = run_procs.py SNNW 
+queue 
+
+arguments = run_procs.py LDMW 
+queue 
+
+arguments = run_procs.py FLTM 
+queue 
+
+arguments = run_procs.py EEPA 
+queue 
+
+arguments = run_procs.py DNLN 
+queue 
+
+arguments = run_procs.py CRFO 
+queue 
+
+arguments = run_procs.py ANMS 
+queue 
+
+arguments = run_procs.py MRZM 
+queue 
+
+arguments = run_procs.py MRVV 
+queue 
+
+arguments = run_procs.py MRMK 
+queue 
+
+arguments = run_procs.py MRMC 
+queue 
+
+arguments = run_procs.py MNGO 
+queue 
+
+arguments = run_procs.py LRVN 
+queue 
+
