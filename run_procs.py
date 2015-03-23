@@ -15,7 +15,7 @@ if __name__ == '__main__':
     subj_list = ['ANGO']
     for ss in subj_list:
         ijks = '%s/%s/masking/ijk_coords_graymattermask_%s' % (os.environ['state_rec'], ss, ss)
-        snsc_data = 'snsc_%s' % ss
+        snsc_data = 'snsc_%s.txt' % ss
         data_dir = '%s/state/snsc_results' % os.environ['t2']
         mstr = '%s/%s/blur.1.%s.steadystate.TRIM+orig' % (os.environ['state_rec'], ss, ss)
         procs.undump(ss, ijks, snsc_data, data_dir, mstr)
