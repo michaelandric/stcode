@@ -123,7 +123,7 @@ def vol2surf(hemi, parent, surfvol, pn, outname):
     f.close()
 
 
-def afni2nifti(t1, t1out):
+def afni2nifti(t1):
     """
     Wrapper to do AFNI program 3dAFNItoNIFTI
     """
@@ -133,6 +133,21 @@ def afni2nifti(t1, t1out):
         os.makedirs(stdout_dir)
     f = open('%s/stdout_from_afnitonifti.txt' % stdout_dir, 'w')
     cmdargs = split('3dAFNItoNIFTI %s+orig.' % t1)
-    call(cmdargs, stdout = f, stderr = STDOUT)
+    call(cmdargs, stdout=f, stderr=STDOUT)
     f.close()
     print 'DONE... '+time.ctime()
+
+
+def fslanat(t1pref):
+    """
+    Do fsl_anat.
+    This creates whole directory of anatomy files in different config.
+    """
+    print 'Doing fslanat for %s -- ' % t1pref+time.ctime()
+    stdout_dir = 'stdout_files'
+    if not os.path.exists(stdout_dir):
+        os.makedirs(stdout_dir)
+    f = open('stdout_files/stdout_from_fsl_anat_%s' % t1pref, 'w')
+    fslargs = split('fsl_anat -i %s.nii.gz --weakbias' % t1pref)
+    Popen(fslargs, stdout=f, stderr=STDOUT)
+    f.close()
