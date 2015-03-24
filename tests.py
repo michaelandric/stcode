@@ -32,4 +32,5 @@ if __name__ == '__main__':
     subj_list = ['ANGO', 'CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW', 'LDMW', 'FLTM', 'EEPA', 'DNLN', 'CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK', 'MRMC', 'MRAG', 'MNGO', 'LRVN']
     outdir = os.environ['t2']+'/state/snsc_results/'
     outname = 'snsc_group_median.txt'
-    np.savetxt(os.path.join(outdir, outname), ge.median_snsc(subj_list), fmt='%.4f')
+    # np.savetxt(os.path.join(outdir, outname), ge.median_snsc(subj_list), fmt='%.4f')
+    np.savetxt(os.path.join(outdir, outname), ge.median_snsc_777filt(subj_list), fmt='%.4f')

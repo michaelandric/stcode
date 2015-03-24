@@ -111,7 +111,7 @@ def snsc_MRAG(input1, input2):
     return preservation
 
 
-def median_snsc(subj_list):
+def median_snsc_asis(subj_list):
     """
     Get median SNSC value across participants
     """
@@ -131,6 +131,42 @@ def median_snsc(subj_list):
             snsc_vals[i, ss[0]] = out_dump[i].split()[3]
 
     return np.median(snsc_vals, axis=1)
+
+
+def fltmedian(nr):
+    if len(nr[nr == 777.]) / float(len(nr)) >= .5:
+        return 777
+    else:
+        return np.median(nr[nr != 777])
+
+
+def fltmean(nr):
+    if len(nr[nr == 777.]) / float(len(nr)) >= .5:
+        return 777
+    else:
+        return np.mean(nr[nr != 777])
+
+
+def median_snsc_777filt(subj_list):
+    """
+    Get median SNSC value across participants
+    """
+    print 'Getting median SNSC -- %s' % time.ctime()
+    snsc_vals = np.zeros((231203, len(subj_list)))
+    print 'snsc_vals shape: \n'
+    print snsc_vals.shape
+    mask = '%s/groupstats/automask_d1_TTavg152T1+tlrc' % os.environ['state_rec']
+    print 'mask is \n%s' % mask
+    for ss in enumerate(subj_list):
+        print ss[1]
+        afni_data = '%s/state/snsc_results/snsc_%s.txt.ijk+tlrc' % (os.environ['t2'], ss[1])
+        cmdargs = split('3dmaskdump -mask %s %s' % (mask, afni_data))
+        dump_out = Popen(cmdargs, stdout=PIPE).communicate()
+        out_dump = [dd for dd in dump_out[0].split('\n')]
+        for i in xrange(len(out_dump)-1):
+            snsc_vals[i, ss[0]] = out_dump[i].split()[3]
+
+    return np.apply_along_axis(fltmedian, axis=1, arr=snsc_vals)
 
 
 def dummyvar(cis, return_sparse=False):
