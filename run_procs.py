@@ -21,7 +21,6 @@ if __name__ == '__main__':
     ss = sys.argv[1]
     data_dir = '%s/state/global_connectivity' % os.environ['t2']
     for cc in xrange(1, 5):
-        ijks = '%s/%s/masking/ijk_coords_graymattermask_%s' % (os.environ['state_rec'], ss, ss)
-        dat = '%s/avg_corrZ_%d_%s' % (data_dir, cc, ss)
-        mstr = '%s/%s/blur.%d.%s.steadystate.TRIM+orig' % (os.environ['state_rec'], ss, cc, ss)
-        procs.undump(ss, ijks, dat, data_dir, mstr)
+        tlrc_brain = '%s/%s/corrTRIM_BLUR/%stlrc+tlrc' % (os.environ['state_rec'], ss, ss)
+        afni_dat = 'avg_corrZ_%d_%s.ijk+orig' % (cc, ss)
+        procs.autotlrc(ss, tlrc_brain, afni_dat, data_dir)
