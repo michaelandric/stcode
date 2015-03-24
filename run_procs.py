@@ -8,19 +8,28 @@ Created on Mon Mar 23 13:28:08 2015
 import os
 import sys
 import procedures as procs
+import shutil
+from glob import glob
 
 
 if __name__ == '__main__':
 
-    # subj_list = ['ANGO', 'CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW', 'LDMW', 'FLTM', 'EEPA', 'DNLN', 'CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK', 'MRMC', 'MRAG', 'MNGO', 'LRVN']
+    subj_list = ['ANGO', 'CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW', 'LDMW', 'FLTM', 'EEPA', 'DNLN', 'CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK', 'MRMC', 'MRAG', 'MNGO', 'LRVN']
     """for ss in subj_list:
         arglist = []
         arglist.append('run_procs.py')
         arglist.append(ss)
         procs.gen_condor_submit_args(arglist)"""
-    ss = sys.argv[1]
+    """ss = sys.argv[1]
     data_dir = '%s/state/global_connectivity' % os.environ['t2']
     for cc in xrange(1, 5):
         tlrc_brain = '%s/%s/corrTRIM_BLUR/%stlrc+tlrc' % (os.environ['state_rec'], ss, ss)
         afni_dat = 'avg_corrZ_%d_%s.ijk+orig' % (cc, ss)
-        procs.autotlrc(ss, tlrc_brain, afni_dat, data_dir)
+        procs.autotlrc(ss, tlrc_brain, afni_dat, data_dir)"""
+    for ss in subj_list:
+        data_dir = '%s/state/global_connectivity' % os.environ['t2']
+        new_dir = '%s/%s_res' % (data_dir, ss)
+        if not os.path.exists(new_dir):
+            os.makedirs(new_dir)
+        for filename in glob('%s/*%s.ijk+orig*' % (data_dir, ss)):
+            shutil.copy2(filename, new_dir)
