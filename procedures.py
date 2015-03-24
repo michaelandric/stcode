@@ -147,7 +147,7 @@ def fslanat(t1pref):
     stdout_dir = 'stdout_files'
     if not os.path.exists(stdout_dir):
         os.makedirs(stdout_dir)
-    f = open('stdout_files/stdout_from_fsl_anat_%s' % t1pref, 'w')
+    f = open('stdout_files/stdout_from_fsl_anat.txt', 'w')
     fslargs = split('fsl_anat -i %s.nii.gz --weakbias' % t1pref)
     Popen(fslargs, stdout=f, stderr=STDOUT)
     f.close()

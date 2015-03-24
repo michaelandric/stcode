@@ -14,10 +14,10 @@ from glob import glob
 
 if __name__ == '__main__':
 
-    subj_list = ['ANGO', 'CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW', 'LDMW', 'FLTM', 'EEPA', 'DNLN', 'CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK', 'MRMC', 'MRAG', 'MNGO', 'LRVN']
-    for ss in subj_list:
-        new_dir = '%s/state/%s' % (os.environ['t2'], ss)
-        if not os.path.exists(new_dir):
-            os.makedirs(new_dir)
-        for f in glob('%s/%s/masking/%s.SurfVol_Alnd_Exp+orig*' % (os.environ['state_rec'], ss, ss)):
-            shutil.copy2(f, new_dir)
+    # subj_list = ['ANGO', 'CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW', 'LDMW', 'FLTM', 'EEPA', 'DNLN', 'CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK', 'MRMC', 'MRAG', 'MNGO', 'LRVN']
+    ss = sys.argv[1]
+    anat_dir = '%s/state/%s' % (os.environ['t2'], ss)
+    os.chdir(anat_dir)
+    print os.getcwd()
+    procs.afni2nifti('%s.SurfVol_Alnd_Exp' % ss)
+    procs.fslanat('%s.SurfVol_Alnd_Exp' % ss)
