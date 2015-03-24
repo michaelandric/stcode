@@ -21,7 +21,7 @@ if __name__ == '__main__':
         arglist.append(ss)
         procs.gen_condor_submit_args(arglist)"""
     ss = sys.argv[1]
-    data_dir = '%s/state/global_connectivity/%s_res' % os.environ['t2']
+    data_dir = '%s/state/global_connectivity/%s_res' % (os.environ['t2'], ss)
     for cc in xrange(1, 5):
         tlrc_brain = '%s/%s/corrTRIM_BLUR/%stlrc+tlrc' % (os.environ['state_rec'], ss, ss)
         afni_dat = 'avg_corrZ_%d_%s.ijk+orig' % (cc, ss)
