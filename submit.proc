@@ -55,6 +55,9 @@ queue
 arguments = run_procs.py MRMC 
 queue 
 
+arguments = run_procs.py MRAG 
+queue 
+
 arguments = run_procs.py MNGO 
 queue 
 
