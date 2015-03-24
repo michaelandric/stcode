@@ -19,5 +19,4 @@ if __name__ == '__main__':
     anat_dir = '%s/state/%s' % (os.environ['t2'], ss)
     os.chdir(anat_dir)
     print os.getcwd()
-    procs.afni2nifti('%s.SurfVol_Alnd_Exp' % ss)
     procs.fslanat('%s.SurfVol_Alnd_Exp' % ss)
