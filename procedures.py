@@ -118,6 +118,6 @@ def vol2surf(hemi, parent, surfvol, pn, outname):
                     -map_func max -f_steps 10 -f_index voxels \
                     -f_p1_fr -%s -f_pn_fr %s \
                     -outcols_NSD_format -oob_index -1 -oob_value 0.0 \
-                    -out_1 %s' % (hemi, hemi, hemi, surfvol, parent, pn, outname))
+                    -out_1 %s' % (hemi, hemi, hemi, surfvol, parent, pn, pn, outname))
     call(cmdargs, stdout=f, stderr=STDOUT)
     f.close()
