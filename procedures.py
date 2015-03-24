@@ -111,7 +111,7 @@ def vol2surf(hemi, parent, surfvol, pn, outname):
     stdout_dir = 'stdout_files'
     if not os.path.exists(stdout_dir):
         os.makedirs(stdout_dir)
-    f = open('%s/stdout_from_vol2surf.txt', 'w')
+    f = open('%s/stdout_from_vol2surf.txt' % stdout_dir, 'w')
     cmdargs = split('3dVol2Surf -spec ./N27_%s_tlrc.spec \
                     -surf_A ./%s.smoothwm.tlrc.ply -surf_B ./%s.pial.tlrc.ply \
                     -sv %s -grid_parent %s \
