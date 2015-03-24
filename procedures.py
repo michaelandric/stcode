@@ -100,3 +100,24 @@ def maskdump(mask, afni_data, outname):
     f.write(dump_out[0])
     f.close()
     print 'Finished maskdump -- %s' % time.ctime()
+
+
+def vol2surf(hemi, parent, surfvol, pn, outname):
+    """
+    """
+    print 'Doing maskdump -- %s' % time.ctime()
+    os.chdir('/mnt/lnif-storage/urihas/uhproject/suma_tlrc')
+    print os.getcwd()
+    stdout_dir = 'stdout_files'
+    if not os.path.exists(stdout_dir):
+        os.makedirs(stdout_dir)
+    f = open('%s/stdout_from_vol2surf.txt', 'w')
+    cmdargs = split('3dVol2Surf -spec ./N27_%s_tlrc.spec \
+                    -surf_A ./%s.smoothwm.tlrc.ply -surf_B ./%s.pial.tlrc.ply \
+                    -sv %s -grid_parent %s \
+                    -map_func max -f_steps 10 -f_index voxels \
+                    -f_p1_fr -%s -f_pn_fr %s \
+                    -outcols_NSD_format -oob_index -1 -oob_value 0.0 \
+                    -out_1 %s' % (hemi, hemi, hemi, surfvol, parent, pn, outname))
+    call(cmdargs, stdout=f, stderr=STDOUT)
+    f.close()
