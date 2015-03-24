@@ -16,7 +16,7 @@ if __name__ == '__main__':
 
     subj_list = ['ANGO', 'CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW', 'LDMW', 'FLTM', 'EEPA', 'DNLN', 'CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK', 'MRMC', 'MRAG', 'MNGO', 'LRVN']
     for ss in subj_list:
-        new_dir = '%s/state/%s' (os.environ['t2'], ss)
+        new_dir = '%s/state/%s' % (os.environ['t2'], ss)
         if not os.path.exists(new_dir):
             os.makedirs(new_dir)
         for f in glob('%s/%s/masking/%s.SurfVol_Alnd_Exp+orig*' % (os.environ['state_rec'], ss, ss)):
