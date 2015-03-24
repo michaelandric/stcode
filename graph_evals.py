@@ -13,6 +13,25 @@ from shlex import split
 from subprocess import Popen, PIPE
 
 
+def avg_global_connectivity(inputts, transform=True):
+    """
+    Construct correlation matrix and
+    take average (Fisher transformed) correlation value
+    at every row (i.e., voxel).
+    :param inputts: Input time series in voxels (rows) x time points (cols)
+    :return : avg correlation value at each voxels, default is Fisher z-transform
+    """
+    print 'Doing avg_global_connectivity -- %s' % time.ctime()
+    print 'Input: %s' % inputts
+    ts = np.genfromtxt(inputts)
+    ts_corr = np.corrcoef(ts)
+    corr_avg = np.mean(ts_corr, axis=1)
+    if transform is True:
+        return np.arctanh(corr_avg)
+    else:
+        return corr_avg
+
+
 def max_q(directory, subjid, cc, dens):
     """
     Get the maximum modularity value

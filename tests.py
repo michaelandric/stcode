@@ -29,8 +29,12 @@ def snsc_evaluation(ss, outdir, density):
 
 if __name__ == '__main__':
 
-    subj_list = ['ANGO', 'CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW', 'LDMW', 'FLTM', 'EEPA', 'DNLN', 'CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK', 'MRMC', 'MRAG', 'MNGO', 'LRVN']
-    outdir = os.environ['t2']+'/state/snsc_results/'
-    outname = 'snsc_group_median.txt'
-    # np.savetxt(os.path.join(outdir, outname), ge.median_snsc(subj_list), fmt='%.4f')
-    np.savetxt(os.path.join(outdir, outname), ge.median_snsc_777filt(subj_list), fmt='%.4f')
+    # subj_list = ['ANGO', 'CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW', 'LDMW', 'FLTM', 'EEPA', 'DNLN', 'CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK', 'MRMC', 'MRAG', 'MNGO', 'LRVN']
+    subj_list= ['ANGO']
+    for ss in subj_list:
+        out_dir = '%s/state/global_connectivity/' % os.environ['t2']
+        input_dir = '%s/%s/corrTRIM_BLUR' % (os.environ['state_rec'], ss)
+        for cc in xrange(1, 5):
+            input_ts = 'cleanTS.%d.%s_graymask_dump' % (cc, ss)
+            out_name = 'avg_corrZ_%d_%s' % (cc, ss)
+            np.savetxt(os.path.join(out_dir, out_name), ge.avg_global_connectivity(os.path.join(input_dir, input_ts)), fmt='%.4f')
