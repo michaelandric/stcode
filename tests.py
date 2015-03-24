@@ -29,8 +29,8 @@ def snsc_evaluation(ss, outdir, density):
 
 if __name__ == '__main__':
 
-    # subj_list = ['ANGO', 'CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW', 'LDMW', 'FLTM', 'EEPA', 'DNLN', 'CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK', 'MRMC', 'MRAG', 'MNGO', 'LRVN']
-    subj_list= ['ANGO']
+    subj_list = ['CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW', 'LDMW', 'FLTM', 'EEPA', 'DNLN', 'CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK', 'MRMC', 'MRAG', 'MNGO', 'LRVN']
+    # subj_list= ['ANGO']
     for ss in subj_list:
         out_dir = '%s/state/global_connectivity/' % os.environ['t2']
         input_dir = '%s/%s/corrTRIM_BLUR' % (os.environ['state_rec'], ss)
