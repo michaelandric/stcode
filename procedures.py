@@ -121,3 +121,18 @@ def vol2surf(hemi, parent, surfvol, pn, outname):
                     -out_1D %s' % (hemi, hemi, hemi, surfvol, parent, pn, pn, outname))
     call(cmdargs, stdout=f, stderr=STDOUT)
     f.close()
+
+
+def afni2nifti(t1, t1out):
+    """
+    Wrapper to do AFNI program 3dAFNItoNIFTI
+    """
+    print 'AFNItoNIFTI... -- '+time.ctime()
+    stdout_dir = 'stdout_files'
+    if not os.path.exists(stdout_dir):
+        os.makedirs(stdout_dir)
+    f = open('%s/stdout_from_afnitonifti.txt' % stdout_dir, 'w')
+    cmdargs = split('3dAFNItoNIFTI %s+orig.' % t1)
+    call(cmdargs, stdout = f, stderr = STDOUT)
+    f.close()
+    print 'DONE... '+time.ctime()
