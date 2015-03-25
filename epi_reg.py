@@ -65,26 +65,28 @@ def applywarpFNIRT(ss, input, out, coeff):
     if not os.path.exists(stdout_dir):
         os.makedirs(stdout_dir)
     f = open('%s/stdout_from_applywarp.txt' % stdout_dir, 'w')
-    decor = os.environ['decor']
-    cmdargs = split('applywarp -i %s -r %s/groupstuff/MNI152_T1_2mm.nii.gz -o %s -w %s' % (input, decor, out, coeff))
+    cmdargs = split('applywarp -i %s -r %s/data/standard/MNI152_T1_2mm.nii.gz -o %s -w %s' % (input, os.environ['FSLDIR'], out, coeff))
     call(cmdargs, stdout=f, stderr=STDOUT)
     f.close()
 
 
 if __name__ == "__main__":
 
-    subj_list = ['ANGO', 'CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW']
+    # subj_list = ['ANGO', 'CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW']
+    subj_list = ['LDMW', 'FLTM', 'EEPA', 'DNLN']
+    # subj_list = ['CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK']
+    # subj_list = ['MRMC', 'MRAG', 'MNGO', 'LRVN']
     for ss in subj_list:
         os.chdir('%s/state/%s' % (os.environ['t2'], ss))
 
         meanepi = '%s_meanepi+orig' % ss
-        # converttoNIFTI(meanepi)
+        converttoNIFTI(meanepi)
 
         epi = '%s_meanepi.nii.gz' % ss
         wholet1 = '%s.SurfVol_Alnd_Exp.anat/T1_biascorr.nii.gz' % ss
         extrt1 = '%s.SurfVol_Alnd_Exp.anat/T1_biascorr_brain.nii.gz' % ss
         epi_reg_out = 'epi2anat_%s_meanepi' % ss
-        # epi_reg(ss, epi, wholet1, extrt1, epi_reg_out)
+        epi_reg(ss, epi, wholet1, extrt1, epi_reg_out)
 
         # Section for FLIRT
         input_FL = epi
