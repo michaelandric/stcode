@@ -20,11 +20,8 @@ if __name__ == '__main__':
     # subj_list = ['MRZM', 'MRVV', 'MRMK', 'MRMC', 'MRAG', 'MNGO', 'LRVN']
     # ss = sys.argv[1]
     for ss in subj_list:
-        epis = []
-        for cc in xrange(1, 5):
-            epis.append('%s/%s/blur.%d.%s.steadystate.TRIM+orig.' % (os.environ['state_rec'], ss, cc, ss))
-        epilist = ' '.join(epis)
         os.chdir('%s/state/%s' % (os.environ['t2'], ss))
         print os.getcwd()
-        outprefix = '%s_avgepi' % ss
-        procs.avgepis(ss, epilist, outprefix)
+        infile = '%s_avgepi+orig' % ss
+        outprefix = '%s_meanepi'
+        procs.mean_epi(ss, infile, outprefix)

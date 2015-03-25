@@ -171,7 +171,7 @@ def avgepis(ss, epi_list, outpref):
     f.close()
 
 
-def mean_epi(ss):
+def mean_epi(ss, infile, outpref):
     """
     Average across TS mean brain to get one mean image.
     YOU SHOULD FIRST HAVE AN AVERAGE OF TS (MANY IMAGES) THAT YOU WANT TO MAKE MEAN (ONE IMAGE).
@@ -184,6 +184,6 @@ def mean_epi(ss):
     if not os.path.exists(stdout_dir):
         os.makedirs(stdout_dir)
     f = open('%s/stdout_from_mean_epi.txt' % stdout_dir, 'w')
-    cmdargs = split('3dTstat -prefix %s_meanepi -mean %s_avgepi+orig' % (ss, ss))
+    cmdargs = split('3dTstat -prefix %s -mean %s' % (outpref, infile))
     call(cmdargs, stdout=f, stderr=STDOUT)
     f.close()
