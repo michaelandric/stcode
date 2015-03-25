@@ -78,7 +78,7 @@ if __name__ == "__main__":
         os.chdir('%s/state/%s' % (os.environ['t2'], ss))
 
         meanepi = '%s_meanepi+orig' % ss
-        converttoNIFTI(meanepi)
+        # converttoNIFTI(meanepi)
 
         epi = '%s_meanepi.nii.gz' % ss
         wholet1 = '%s.SurfVol_Alnd_Exp.anat/T1_biascorr.nii.gz' % ss
