@@ -75,7 +75,8 @@ if __name__ == "__main__":
     # subj_list = ['ANGO', 'CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW']
     # subj_list = ['LDMW', 'FLTM', 'EEPA', 'DNLN']
     # subj_list = ['CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK']
-    subj_list = ['MRMC', 'MRAG', 'MNGO', 'LRVN']
+    # subj_list = ['MRMC', 'MRAG', 'MNGO', 'LRVN']
+    subj_list = ['MRMC']
     for ss in subj_list:
         for cc in xrange(1, 5):
             reg_dir = '%s/state/%s' % (os.environ['t2'], ss)
