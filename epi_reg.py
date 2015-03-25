@@ -32,7 +32,7 @@ def epi_reg(ss, epi, wholet1, extrt1, out):
     """
     Register epi to t1
     """
-    print 'Doing converttoNIFTI for %s -- ' % ss+time.ctime()
+    print 'Doing epi_reg for %s -- ' % ss+time.ctime()
     stdout_dir = 'stdout_files'
     if not os.path.exists(stdout_dir):
         os.makedirs(stdout_dir)
@@ -84,10 +84,10 @@ if __name__ == "__main__":
         wholet1 = '%s.SurfVol_Alnd_Exp.anat/T1_biascorr.nii.gz' % ss
         extrt1 = '%s.SurfVol_Alnd_Exp.anat/T1_biascorr_brain.nii.gz' % ss
         epi_reg_out = 'epi2anat_%s_meanepi' % ss
-        epi_reg(ss, epi, wholet1, extrt1, epi_reg_out)
+        # epi_reg(ss, epi, wholet1, extrt1, epi_reg_out)
 
         # Section for FLIRT
-        input_FL = '%s.nii.gz' % epi_reg_out
+        input_FL = epi
         premat = '%s.mat' % epi_reg_out
         out_FL = '%s_highres_flirted_MNI2mm_meanepi' % ss
         applywarpFLIRT(ss, input_FL, extrt1, out_FL, premat)
