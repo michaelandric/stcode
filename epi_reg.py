@@ -10,12 +10,8 @@ Then can apply the coeff already done to move this to MNI space
 
 import os
 import time
-import shutil
 from shlex import split
-from subprocess import call
-from subprocess import Popen
-from subprocess import PIPE
-from subprocess import STDOUT
+from subprocess import call, STDOUT
 
 
 def converttoNIFTI(brain):
@@ -73,3 +69,31 @@ def applywarpFNIRT(ss, input, out, coeff):
     cmdargs = split('applywarp -i %s -r %s/groupstuff/MNI152_T1_2mm.nii.gz -o %s -w %s' % (input, decor, out, coeff))
     call(cmdargs, stdout=f, stderr=STDOUT)
     f.close()
+
+
+if __name__ == "__main__":
+
+    subj_list = ['ANGO', 'CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW']
+    for ss in subj_list:
+        os.chdir('%s/state/%s' % (os.environ['t2'], ss))
+
+        meanepi = '%s_meanepi+orig' % ss
+        converttoNIFTI(meanepi)
+
+        epi = '%s_meanepi.nii.gz' % ss
+        wholet1 = '%s.SurfVol_Alnd_Exp.anat/T1_biascorr.nii.gz' % ss
+        extrt1 = '%s.SurfVol_Alnd_Exp.anat/T1_biascorr_brain.nii.gz' % ss
+        epi_reg_out = 'epi2anat_%s_meanepi' % ss
+        epi_reg(ss, epi, wholet1, extrt1, epi_reg_out)
+
+        # Section for FLIRT
+        input_FL = '%s.nii.gz' % epi_reg_out
+        premat = '%s.mat' % epi_reg_out
+        out_FL = '%s_highres_flirted_MNI2mm_meanepi' % ss
+        applywarpFLIRT(ss, input_FL, extrt1, out_FL, premat)
+
+        # Section for FNIRT
+        input_FN = '%s.nii.gz' % out_FL
+        coeff = '%s.SurfVol_Alnd_Exp.anat/T1_to_MNI_nonlin_coeff.nii.gz' % ss
+        out_FN = '%s_highres_fnirted_MNI2mm_meanepi' % ss
+        applywarpFNIRT(ss, input_FN, out_FN, coeff)
