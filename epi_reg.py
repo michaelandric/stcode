@@ -77,25 +77,23 @@ if __name__ == "__main__":
     # subj_list = ['CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK']
     subj_list = ['MRMC', 'MRAG', 'MNGO', 'LRVN']
     for ss in subj_list:
-        os.chdir('%s/state/%s' % (os.environ['t2'], ss))
+        for cc in xrange(1, 5):
+            reg_dir = '%s/state/%s' % (os.environ['t2'], ss)
+            os.chdir('%s/state/global_connectivity/%s_res' % (os.environ['t2'], ss))
+            print os.getcwd()
 
-        meanepi = '%s_meanepi+orig' % ss
-        converttoNIFTI(meanepi)
+            in_epi = 'avg_corrZ_%d_%s.ijk+orig' % (cc, ss)
+            converttoNIFTI(in_epi)
 
-        epi = '%s_meanepi.nii.gz' % ss
-        wholet1 = '%s.SurfVol_Alnd_Exp.anat/T1_biascorr.nii.gz' % ss
-        extrt1 = '%s.SurfVol_Alnd_Exp.anat/T1_biascorr_brain.nii.gz' % ss
-        epi_reg_out = 'epi2anat_%s_meanepi' % ss
-        epi_reg(ss, epi, wholet1, extrt1, epi_reg_out)
+            # Section for FLIRT
+            input_FL = 'avg_corrZ_%d_%s.ijk.nii.gz' % (cc, ss)
+            extrt1 = '%s.SurfVol_Alnd_Exp.anat/T1_biascorr_brain.nii.gz' % ss
+            premat = 'epi2anat_%s_meanepi.mat' % ss
+            out_FL = 'avg_corrZ_%d_%s_highres_flirted_MNI2mm' % (cc, ss)
+            applywarpFLIRT(ss, input_FL, os.path.join(reg_dir, extrt1), out_FL, os.path.join(reg_dir, premat))
 
-        # Section for FLIRT
-        input_FL = epi
-        premat = '%s.mat' % epi_reg_out
-        out_FL = '%s_highres_flirted_MNI2mm_meanepi' % ss
-        applywarpFLIRT(ss, input_FL, extrt1, out_FL, premat)
-
-        # Section for FNIRT
-        input_FN = '%s.nii.gz' % out_FL
-        coeff = '%s.SurfVol_Alnd_Exp.anat/T1_to_MNI_nonlin_coeff.nii.gz' % ss
-        out_FN = '%s_highres_fnirted_MNI2mm_meanepi' % ss
-        applywarpFNIRT(ss, input_FN, out_FN, coeff)
+            # Section for FNIRT
+            input_FN = '%s.nii.gz' % out_FL
+            coeff = '%s.SurfVol_Alnd_Exp.anat/T1_to_MNI_nonlin_coeff.nii.gz' % ss
+            out_FN = 'avg_corrZ_%d_%s_highres_fnirted_MNI2mm' % (cc, ss)
+            applywarpFNIRT(ss, input_FN, out_FN, os.path.join(reg_dir, coeff))
