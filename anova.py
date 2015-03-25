@@ -33,6 +33,7 @@ def afni_anova(cond_list, ss_list):
     cmdargs = split('3dANOVA2 -type 3 -alevels 4 -blevels %d \
                     %s -fa all_fstat %s \
                     -mask %s/data/standard/MNI152_T1_2mm_brain_mask_dil1.nii.gz \
+                    -adiff 1 3 HighlyOrdervsRandom \
                     -acontr -0.75 -0.059 0.63 0.178 poslincorrect \
                     -acontr 0.42 -0.57 0.56 -0.41 Ushapecorrect \
                     -acontr -1 -1 1 1 stepupcorrect \
