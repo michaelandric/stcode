@@ -23,5 +23,5 @@ if __name__ == '__main__':
         os.chdir('%s/state/%s' % (os.environ['t2'], ss))
         print os.getcwd()
         infile = '%s_avgepi+orig' % ss
-        outprefix = '%s_meanepi'
+        outprefix = '%s_meanepi' % ss
         procs.mean_epi(ss, infile, outprefix)
