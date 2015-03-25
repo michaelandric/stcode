@@ -73,8 +73,8 @@ def applywarpFNIRT(ss, input, out, coeff):
 if __name__ == "__main__":
 
     # subj_list = ['ANGO', 'CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW']
-    subj_list = ['LDMW', 'FLTM', 'EEPA', 'DNLN']
-    # subj_list = ['CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK']
+    # subj_list = ['LDMW', 'FLTM', 'EEPA', 'DNLN']
+    subj_list = ['CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK']
     # subj_list = ['MRMC', 'MRAG', 'MNGO', 'LRVN']
     for ss in subj_list:
         os.chdir('%s/state/%s' % (os.environ['t2'], ss))
