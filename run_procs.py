@@ -14,12 +14,17 @@ from glob import glob
 
 if __name__ == '__main__':
 
+    subj_list = ['ANGO', 'CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW', 'LDMW', 'FLTM', 'EEPA', 'DNLN', 'CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK', 'MRMC', 'MRAG', 'MNGO', 'LRVN']
     # subj_list = ['ANGO', 'CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW']
     # subj_list = ['LDMW', 'FLTM', 'EEPA', 'DNLN', 'CRFO', 'ANMS']
-    subj_list = ['MRZM', 'MRVV', 'MRMK', 'MRMC', 'MRAG', 'MNGO', 'LRVN']
+    # subj_list = ['MRZM', 'MRVV', 'MRMK', 'MRMC', 'MRAG', 'MNGO', 'LRVN']
     # ss = sys.argv[1]
     for ss in subj_list:
-        anat_dir = '%s/state/%s' % (os.environ['t2'], ss)
-        os.chdir(anat_dir)
+        epis = []
+        for cc in xrange(1, 5):
+            epis.append('%s/%s/blur.%d.%s.steadystate.TRIM+orig.' % (os.environ['state_rec'], ss, cc, ss))
+        epilist = ' '.join(epis)
+        os.chdir('%s/state/%s' % (os.environ['t2'], ss))
         print os.getcwd()
-        procs.fslanat('%s.SurfVol_Alnd_Exp' % ss)
+        outprefix = '%s_avgepi' % ss
+        procs.avgepis(ss, epilist, outprefix)

@@ -85,6 +85,7 @@ def nwarpapply(nwarp_algn_brain, affn_trans, afni_data, outpref, data_dir):
 
 def maskdump(mask, afni_data, outname):
     """
+    Dump AFNI image to text file.
     """
     print 'Doing maskdump -- %s' % time.ctime()
     stdout_dir = 'stdout_files'
@@ -150,4 +151,39 @@ def fslanat(t1pref):
     f = open('stdout_files/stdout_from_fsl_anat.txt', 'w')
     fslargs = split('fsl_anat -i %s.nii.gz --weakbias' % t1pref)
     Popen(fslargs, stdout=f, stderr=STDOUT)
+    f.close()
+
+
+def avgepis(ss, epi_list, outpref):
+    """
+    Make average TS brain
+    :param ss: Subject identifier
+    :param epi_list: Include list of epis that you average over
+    Writes to file a TS average brain
+    """
+    print 'Doing avgepis for %s -- ' % ss+time.ctime()
+    stdout_dir = 'stdout_files'
+    if not os.path.exists(stdout_dir):
+        os.makedirs(stdout_dir)
+    f = open('%s/stdout_from_avgepis.txt' % stdout_dir, 'w')
+    cmdargs = split('3dMean -prefix %s %s' % (outpref, epi_list))
+    call(cmdargs, stdout=f, stderr=STDOUT)
+    f.close()
+
+
+def mean_epi(ss):
+    """
+    Average across TS mean brain to get one mean image.
+    YOU SHOULD FIRST HAVE AN AVERAGE OF TS (MANY IMAGES) THAT YOU WANT TO MAKE MEAN (ONE IMAGE).
+    This serves registration purposes.
+    :param ss: Subject identifier
+    Writes to file AFNI mean brain (one image)
+    """
+    print 'Doing mean_epi for %s -- ' % ss+time.ctime()
+    stdout_dir = 'stdout_files'
+    if not os.path.exists(stdout_dir):
+        os.makedirs(stdout_dir)
+    f = open('%s/stdout_from_mean_epi.txt' % stdout_dir, 'w')
+    cmdargs = split('3dTstat -prefix %s_meanepi -mean %s_avgepi+orig' % (ss, ss))
+    call(cmdargs, stdout=f, stderr=STDOUT)
     f.close()
