@@ -75,7 +75,8 @@ if __name__ == "__main__":
     # subj_list = ['ANGO', 'CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW']
     # subj_list = ['LDMW', 'FLTM', 'EEPA', 'DNLN']
     # subj_list = ['CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK']
-    subj_list = ['MRMC', 'MRAG', 'MNGO', 'LRVN']
+    # subj_list = ['MRMC', 'MRAG', 'MNGO', 'LRVN']
+    subj_list = ['ANGO', 'CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW', 'LDMW', 'FLTM', 'EEPA', 'DNLN', 'CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK']
     for ss in subj_list:
         for cc in xrange(1, 5):
             reg_dir = '%s/state/%s' % (os.environ['t2'], ss)
@@ -83,7 +84,7 @@ if __name__ == "__main__":
             print os.getcwd()
 
             in_epi = 'avg_corrZ_%d_%s.ijk+orig' % (cc, ss)
-            # converttoNIFTI(in_epi)
+            converttoNIFTI(in_epi)
 
             # Section for FLIRT
             input_FL = 'avg_corrZ_%d_%s.ijk.nii.gz' % (cc, ss)
