@@ -65,7 +65,7 @@ def applywarpFNIRT(ss, input, out, coeff):
     if not os.path.exists(stdout_dir):
         os.makedirs(stdout_dir)
     f = open('%s/stdout_from_applywarp.txt' % stdout_dir, 'w')
-    cmdargs = split('applywarp -i %s -r %s/data/standard/MNI152_T1_2mm.nii.gz -o %s -w %s' % (input, os.environ['FSLDIR'], out, coeff))
+    cmdargs = split('applywarp -i %s -r %s/data/standard/MNI152_T1_2mm.nii.gz -o %s -w %s --interp=nn' % (input, os.environ['FSLDIR'], out, coeff))
     call(cmdargs, stdout=f, stderr=STDOUT)
     f.close()
 
