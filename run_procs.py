@@ -23,4 +23,6 @@ if __name__ == '__main__':
     input_pref = 'avg_corrZ_def_anova'
     mask = '%s/data/standard/MNI152_T1_2mm.nii.gz' % os.environ['FSLDIR']
     out_name = '%s_fwhm_est_out' % input_pref
-    procs.fwhm_est('%s+tlrc' % input_pref, out_name, mask)
+    # procs.fwhm_est('%s+tlrc' % input_pref, out_name, mask)
+    fwhmvals = [5.50817, 5.91411, 5.89492]
+    procs.clustsim(fwhmvals, mask)

@@ -215,7 +215,7 @@ def clustsim(fwhm, mask=None):
     stdout_dir = 'stdout_files'
     if not os.path.exists(stdout_dir):
         os.makedirs(stdout_dir)
-    f = open('%s/clustsim_out.txt' % stdout_dir, 'w')
+    f = open('ClustSim_FWHM_%f_%f_%f_out.txt' % (fwhm[0], fwhm[1], fwhm[2]), 'w')
     if mask is None:
         cmdargs = split('3dClustSim -fwhm %f %f %f' % (fwhm[0], fwhm[1], fwhm[2]))
     else:
