@@ -20,7 +20,7 @@ if __name__ == '__main__':
     data_dir = '%s/state/global_connectivity/group' % os.environ['t2']
     os.chdir(data_dir)
     print os.getcwd()
-    input_pref = 'avg_corrZ_anova'
+    input_pref = 'avg_corrZ_def_anova'
     mask = '%s/data/standard/MNI152_T1_2mm.nii.gz' % os.environ['FSLDIR']
     out_name = '%s_fwhm_est_out' % input_pref
     procs.fwhm_est('%s+tlrc' % input_pref, out_name, mask)
