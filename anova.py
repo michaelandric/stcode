@@ -34,9 +34,12 @@ def afni_anova(cond_list, ss_list):
                     %s -fa all_fstat %s \
                     -mask %s/data/standard/MNI152_T1_2mm_brain_mask_dil1.nii.gz \
                     -adiff 1 3 HighlyOrdervsRandom \
-                    -acontr -0.75 -0.059 0.63 0.178 poslincorrect \
-                    -acontr 0.42 -0.57 0.56 -0.41 Ushapecorrect \
-                    -acontr -1 -1 1 1 stepupcorrect \
+                    -acontr -0.75 -0.059 0.63 0.178 poslin \
+                    -acontr 0.75 0.059 -0.63 -0.178 neglin \
+                    -acontr 0.42 -0.57 0.56 -0.41 Ushape \
+                    -acontr -0.42 0.57 -0.56 0.41 negUshape \
+                    -acontr -1 -1 1 1 stepup \
+                    -acontr 1 1 -1 -1 stepdown \
                     -bucket avg_corrZ_def_anova' % (len(ss_list), dsets, ameans, os.environ['FSLDIR']))
     call(cmdargs, stdout=f, stderr=STDOUT)
 
