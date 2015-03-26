@@ -51,7 +51,7 @@ def applywarpFLIRT(ss, input, extrt1, out, premat):
     if not os.path.exists(stdout_dir):
         os.makedirs(stdout_dir)
     f = open('%s/stdout_from_applywarpFLIRT.txt' % stdout_dir, 'w')
-    cmdargs = split('applywarp -i %s -r %s -o %s --premat=%s --interp=nn' % (input, extrt1, out, premat))
+    cmdargs = split('applywarp -i %s -r %s -o %s --premat=%s' % (input, extrt1, out, premat))
     call(cmdargs, stdout=f, stderr=STDOUT)
     f.close()
 
@@ -65,7 +65,7 @@ def applywarpFNIRT(ss, input, out, coeff):
     if not os.path.exists(stdout_dir):
         os.makedirs(stdout_dir)
     f = open('%s/stdout_from_applywarp.txt' % stdout_dir, 'w')
-    cmdargs = split('applywarp -i %s -r %s/data/standard/MNI152_T1_2mm.nii.gz -o %s -w %s --interp=nn' % (input, os.environ['FSLDIR'], out, coeff))
+    cmdargs = split('applywarp -i %s -r %s/data/standard/MNI152_T1_2mm.nii.gz -o %s -w %s' % (input, os.environ['FSLDIR'], out, coeff))
     call(cmdargs, stdout=f, stderr=STDOUT)
     f.close()
 
@@ -76,7 +76,7 @@ if __name__ == "__main__":
     # subj_list = ['LDMW', 'FLTM', 'EEPA', 'DNLN']
     # subj_list = ['CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK']
     # subj_list = ['MRMC', 'MRAG', 'MNGO', 'LRVN']
-    subj_list = ['ANGO', 'CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW', 'LDMW', 'FLTM', 'EEPA', 'DNLN', 'CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK']
+    subj_list = ['ANGO', 'CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW', 'LDMW', 'FLTM', 'EEPA', 'DNLN', 'CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK', 'MRMC', 'MRAG', 'MNGO', 'LRVN']
     for ss in subj_list:
         for cc in xrange(1, 5):
             reg_dir = '%s/state/%s' % (os.environ['t2'], ss)
@@ -90,11 +90,11 @@ if __name__ == "__main__":
             input_FL = 'avg_corrZ_%d_%s.ijk.nii.gz' % (cc, ss)
             extrt1 = '%s.SurfVol_Alnd_Exp.anat/T1_biascorr_brain.nii.gz' % ss
             premat = 'epi2anat_%s_meanepi.mat' % ss
-            out_FL = 'avg_corrZ_%d_%s_highres_flirted_MNI2mm' % (cc, ss)
+            out_FL = 'avg_corrZ_%d_%s_highres_flirted_def_MNI2mm' % (cc, ss)
             applywarpFLIRT(ss, input_FL, os.path.join(reg_dir, extrt1), out_FL, os.path.join(reg_dir, premat))
 
             # Section for FNIRT
             input_FN = '%s.nii.gz' % out_FL
             coeff = '%s.SurfVol_Alnd_Exp.anat/T1_to_MNI_nonlin_coeff.nii.gz' % ss
-            out_FN = 'avg_corrZ_%d_%s_highres_fnirted_MNI2mm' % (cc, ss)
+            out_FN = 'avg_corrZ_%d_%s_highres_fnirted_def_MNI2mm' % (cc, ss)
             applywarpFNIRT(ss, input_FN, out_FN, os.path.join(reg_dir, coeff))
