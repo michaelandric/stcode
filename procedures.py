@@ -187,3 +187,41 @@ def mean_epi(ss, infile, outpref):
     cmdargs = split('3dTstat -prefix %s -mean %s' % (outpref, infile))
     call(cmdargs, stdout=f, stderr=STDOUT)
     f.close()
+
+
+def fwhm_est(input_data, outname, mask=None):
+    """
+    Estiamte FWHM of data
+    Will return FWHM
+    """
+    print 'Doing fwhm_est -- %s' % time.ctime()
+    stdout_dir = 'stdout_files'
+    if not os.path.exists(stdout_dir):
+        os.makedirs(stdout_dir)
+    f = open('%s_fwhm_est_out.txt' % input_data, 'w')
+    if mask is None:
+        cmdargs = split('3dFWHMx -input %s -out %s' % (input_data, outname))
+    else:
+        cmdargs = split('3dFWHMx -mask %s -input %s -out %s' % (mask, input_data, outname))
+    #fwhm_est_out = Popen(cmdargs, stdout=f, stderr=STDOUT).communicate()
+    call(cmdargs, stdout=f, stderr=STDOUT)
+    f.close()
+
+    return fwhm_est_out[0]
+
+
+def clustsim(fwhm, mask=None):
+    """
+    Find the size of clusters by chance
+    """
+    print 'Running clustsim -- %s' % time.ctime()
+    stdout_dir = 'stdout_files'
+    if not os.path.exists(stdout_dir):
+        os.makedirs(stdout_dir)
+    f = open('%s/clustsim_out.txt' % stdout_dir, 'w')
+    if mask is None:
+        cmdargs = split('3dClustSim -fwhm %f %f %f' % (fwhm[0], fwhm[1], fwhm[2]))
+    else:
+        cmdargs = split('3dClustSim -mask %s -fwhm %f %f %f' % (mask, fwhm[0], fwhm[1], fwhm[2]))
+    call(cmdargs, stdout=f, stderr=STDOUT)
+    f.close()
