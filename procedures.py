@@ -223,3 +223,17 @@ def clustsim(fwhm, mask=None):
         cmdargs = split('3dClustSim -NN 123 -mask %s -fwhmxyz %f %f %f' % (mask, fwhm[0], fwhm[1], fwhm[2]))
     call(cmdargs, stdout=f, stderr=STDOUT)
     f.close()
+    
+
+def fdr(input_dat, outname, mask):
+    """
+    Do AFNI 3dFDR
+    """
+    stdout_dir = 'stdout_files'
+    if not os.path.exists(stdout_dir):
+        os.makedirs(stdout_dir)
+    f = open('%s/stdout_from_fdr.txt' % stdout_dir, 'w')
+    cmdargs = split('3dFDR -input %s -mask %s -prefix %s' % (input_dat, mask, outname))
+    call(cmdargs, stdout=f, stderr=STDOUT)
+    f.close()
+
