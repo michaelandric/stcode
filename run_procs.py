@@ -22,7 +22,7 @@ if __name__ == '__main__':
     print os.getcwd()
     input_pref = 'avg_corrZ_def_anova'
     mask = '%s/data/standard/MNI152_T1_2mm.nii.gz' % os.environ['FSLDIR']
-    out_name = '%s_fwhm_est_out' % input_pref
+    out_name = '%s_fwhm_est_out_p.05' % input_pref
     # procs.fwhm_est('%s+tlrc' % input_pref, out_name, mask)
     # fwhmvals = [5.50817, 5.91411, 5.89492]
     # fwhmvals = [9.16169, 10.2877, 10.193]

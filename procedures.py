@@ -219,6 +219,7 @@ def clustsim(fwhm, mask=None):
     if mask is None:
         cmdargs = split('3dClustSim -fwhmxyz %f %f %f' % (fwhm[0], fwhm[1], fwhm[2]))
     else:
-        cmdargs = split('3dClustSim -NN 123 -mask %s -fwhmxyz %f %f %f' % (mask, fwhm[0], fwhm[1], fwhm[2]))
+        # cmdargs = split('3dClustSim -NN 123 -mask %s -fwhmxyz %f %f %f' % (mask, fwhm[0], fwhm[1], fwhm[2]))
+        cmdargs = split('3dClustSim -NN 123 -mask %s -fwhmxyz %f %f %f -pthr 0.05' % (mask, fwhm[0], fwhm[1], fwhm[2]))
     call(cmdargs, stdout=f, stderr=STDOUT)
     f.close()
