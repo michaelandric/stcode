@@ -21,7 +21,7 @@ def afni_anova(cond_list, ss_list):
         ameans.append('-amean %d %s_mean' % (i+1, cond_name))
         for j, ss in enumerate(ss_list):
             dset_dir = '%s/state/global_connectivity/%s_res' % (os.environ['t2'], ss)
-            dset_pref = 'avg_corrZ_%d_%s_highres_fnirted_MNI2mm.nii.gz' % (i+1, ss)
+            dset_pref = 'avg_corrZ_%d_%s_highres_fnirted_def_MNI2mm.nii.gz' % (i+1, ss)
             dsets.append("-dset %d %d '%s'" % (i+1, j+1, os.path.join(dset_dir, dset_pref)))
 
     ameans = ' '.join(ameans)
@@ -37,7 +37,7 @@ def afni_anova(cond_list, ss_list):
                     -acontr -0.75 -0.059 0.63 0.178 poslincorrect \
                     -acontr 0.42 -0.57 0.56 -0.41 Ushapecorrect \
                     -acontr -1 -1 1 1 stepupcorrect \
-                    -bucket avg_corrZ_anova' % (len(ss_list), dsets, ameans, os.environ['FSLDIR']))
+                    -bucket avg_corrZ_def_anova' % (len(ss_list), dsets, ameans, os.environ['FSLDIR']))
     call(cmdargs, stdout=f, stderr=STDOUT)
 
 
