@@ -203,11 +203,9 @@ def fwhm_est(input_data, outname, mask=None):
         cmdargs = split('3dFWHMx -input %s -out %s' % (input_data, outname))
     else:
         cmdargs = split('3dFWHMx -mask %s -input %s -out %s' % (mask, input_data, outname))
-    #fwhm_est_out = Popen(cmdargs, stdout=f, stderr=STDOUT).communicate()
+    # fwhm_est_out = Popen(cmdargs, stdout=f, stderr=STDOUT).communicate()
     call(cmdargs, stdout=f, stderr=STDOUT)
     f.close()
-
-    return fwhm_est_out[0]
 
 
 def clustsim(fwhm, mask=None):
