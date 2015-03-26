@@ -26,5 +26,6 @@ if __name__ == '__main__':
     # procs.fwhm_est('%s+tlrc' % input_pref, out_name, mask)
     # fwhmvals = [5.50817, 5.91411, 5.89492]
     # fwhmvals = [9.16169, 10.2877, 10.193]
-    fwhmvals = [6, 6, 6]
-    procs.clustsim(fwhmvals, mask)
+    # fwhmvals = [6, 6, 6]
+    for fwhmvals in [[5.50817, 5.91411, 5.89492], [9.16169, 10.2877, 10.193], [6, 6, 6]]:
+        procs.clustsim(fwhmvals, mask)
