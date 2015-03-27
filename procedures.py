@@ -144,7 +144,7 @@ def vol2surf_mni(hemi, parent, pn, outname):
     surfvol_name = 'MNI_N27_SurfVol.nii'
     sv = os.path.join(suma_dir, surfvol_name)
     cmdargs = split('3dVol2Surf -spec %s \
-                    -surf_A %s -surf_B %a \
+                    -surf_A %s -surf_B %s \
                     -sv %s -grid_parent %s \
                     -map_func max -f_steps 10 -f_index voxels \
                     -f_p1_fr -%s -f_pn_fr %s \
