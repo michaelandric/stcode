@@ -30,7 +30,8 @@ if __name__ == '__main__':
     # for fwhmvals in [[5.50817, 5.91411, 5.89492], [9.16169, 10.2877, 10.193], [6, 6, 6]]:
     #    procs.clustsim(fwhmvals, mask)
     # procs.fdr('%s+tlrc' % input_pref, 'FDR_%s' % input_pref, mask)
-    parent_pref = 'Fvals_avg_corrZ_anova_Clust_mask'
+    # parent_pref = 'Fvals_avg_corrZ_anova_Clust_mask'
+    parent_pref = 'neglin_tstat_avg_corrZ_anova_Clust_mask'
     pn = '1.0'
     # surfvol = 'TT_N27+tlrc'
     for hemi in ['lh', 'rh']:
