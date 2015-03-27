@@ -32,6 +32,8 @@ if __name__ == '__main__':
     # procs.fdr('%s+tlrc' % input_pref, 'FDR_%s' % input_pref, mask)
     parent_pref = 'Fvals_avg_corrZ_anova_Clust_mask'
     pn = '2.0'
+    surfvol = 'TT_N27+tlrc'
     for hemi in ['lh', 'rh']:
-        outname = '%s_%s_MNI_N27.1D' % (parent_pref, hemi)
-        procs.vol2surf_mni(hemi, '%s+tlrc' % parent_pref, pn, outname)
+        outname = '%s_%s_TT_N27.1D' % (parent_pref, hemi)
+        # procs.vol2surf_mni(hemi, '%s+tlrc' % parent_pref, pn, outname)
+        procs.vol2surf(hemi, '%s+tlrc' % os.path.join(data_dir, parent_pref), surfvol, pn, outname)
