@@ -124,6 +124,36 @@ def vol2surf(hemi, parent, surfvol, pn, outname):
     f.close()
 
 
+def vol2surf_mni(hemi, parent, pn, outname):
+    """
+    Trying to project to MNI surf.
+    This is experimental.
+    """
+    print 'Doing maskdump -- %s' % time.ctime()
+    # os.chdir('/mnt/lnif-storage/urihas/uhproject/suma_tlrc')
+    print os.getcwd()
+    suma_dir = '/mnt/lnif-storage/urihas/software/AFNI2015/suma_MNI_N27'
+    stdout_dir = 'stdout_files'
+    if not os.path.exists(stdout_dir):
+        os.makedirs(stdout_dir)
+    f = open('%s/stdout_from_vol2surf.txt' % stdout_dir, 'w')
+    spec_fname = 'MNI_N27_%s.spec' % hemi
+    spec = os.path.join(suma_dir, spec_fname)
+    surf_a = '%s.smoothwm.gii' % hemi
+    surf_b = '%s.pial.gii' % hemi
+    surfvol_name = 'MNI_N27_SurfVol.nii'
+    sv = os.path.join(suma_dir, surfvol_name)
+    cmdargs = split('3dVol2Surf -spec %s \
+                    -surf_A %s -surf_B %a \
+                    -sv %s -grid_parent %s \
+                    -map_func max -f_steps 10 -f_index voxels \
+                    -f_p1_fr -%s -f_pn_fr %s \
+                    -outcols_NSD_format -oob_index -1 -oob_value 0.0 \
+                    -out_1D %s' % (spec, surf_a, surf_b, sv, parent, pn, pn, outname))
+    call(cmdargs, stdout=f, stderr=STDOUT)
+    f.close()
+
+
 def afni2nifti(t1):
     """
     Wrapper to do AFNI program 3dAFNItoNIFTI
@@ -223,7 +253,7 @@ def clustsim(fwhm, mask=None):
         cmdargs = split('3dClustSim -NN 123 -mask %s -fwhmxyz %f %f %f' % (mask, fwhm[0], fwhm[1], fwhm[2]))
     call(cmdargs, stdout=f, stderr=STDOUT)
     f.close()
-    
+
 
 def fdr(input_dat, outname, mask):
     """
@@ -236,4 +266,3 @@ def fdr(input_dat, outname, mask):
     cmdargs = split('3dFDR -input %s -mask %s -prefix %s' % (input_dat, mask, outname))
     call(cmdargs, stdout=f, stderr=STDOUT)
     f.close()
-
