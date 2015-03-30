@@ -33,7 +33,7 @@ if __name__ == '__main__':
     # parent_pref = 'Fvals_avg_corrZ_anova_Clust_mask'
     # parent_pref = 'neglin_tstat_avg_corrZ_anova_Clust_mask'
     # parent_pref = 'Fvals_mask_ClustVals_avg_corrZ_anova'
-    parent_pre = 'neglin_mask_ClustVals_avg_corrZ_anova'
+    parent_pref = 'neglin_mask_ClustVals_avg_corrZ_anova'
     pn = '1.0'
     # surfvol = 'TT_N27+tlrc'
     for hemi in ['lh', 'rh']:
