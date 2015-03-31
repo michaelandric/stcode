@@ -83,17 +83,18 @@ def nwarpapply(nwarp_algn_brain, affn_trans, afni_data, outpref, data_dir):
     print 'Finished NWARP -- %s' % time.ctime()
 
 
-def maskdump(mask, afni_data, outname):
+def maskdump(mask, data_dir, afni_data, outname):
     """
     Dump AFNI image to text file.
     """
     print 'Doing maskdump -- %s' % time.ctime()
+    os.chdir(data_dir)
+    print os.getcwd()
     stdout_dir = 'stdout_files'
     if not os.path.exists(stdout_dir):
         os.makedirs(stdout_dir)
-    # f = open('%s/stdout_from_nwarpapply.txt' % stdout_dir, 'w')
     cmdargs = split('3dmaskdump -mask %s %s' % (mask, afni_data))
-    serr = open('%s/stderr_from_maskdump.txt', 'w')
+    serr = open('%s/stderr_from_maskdump.txt' % stdout_dir, 'w')
     dump_out = Popen(cmdargs, stdout=PIPE, stderr=PIPE).communicate()
     serr.write(dump_out[1])
     serr.close()
