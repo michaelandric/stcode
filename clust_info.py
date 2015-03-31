@@ -38,8 +38,8 @@ def get_clust_info(subj_list, conditions, maskname, method='mean'):
                 elif method is 'median':
                     vals.append(np.median(subj_dat[np.where(mask == cl)]))
     subj_vec = subj_list*(len(clusters)*len(conditions))
-    cond_vec = np.tile(np.repeat(conditions, len(clusters)), len(subj_list))
-    clust_vec = np.tile(np.tile(clusters, len(conditions)), len(subj_list))
+    cond_vec = np.array(np.tile(np.repeat(conditions, len(clusters)), len(subj_list)), dtype=np.int16)
+    clust_vec = np.array(np.tile(np.tile(clusters, len(conditions)), len(subj_list)), dtype=np.int16)
 
     return np.column_stack([subj_vec, cond_vec, clust_vec, vals])
 
@@ -51,5 +51,6 @@ if __name__ == "__main__":
     print os.getcwd()
     conditions = range(1, 5)
     clust_mask = 'neglin_tstat_avg_corrZ_anova_Clust_mask+tlrc.txt'
-    out = pd.DataFrame(get_clust_info(subj_list, conditions, clust_mask))
-    out.to_csv('neglin_tstat_avg_corrZ_anova_Clust_mask+tlrc.cluster_info.csv')
+    col_names = ['subject', 'condition', 'cluster', 'val']
+    out = pd.DataFrame(get_clust_info(subj_list, conditions, clust_mask), columns=col_names)
+    out.to_csv('neglin_tstat_avg_corrZ_anova_Clust_mask+tlrc.cluster_info.csv', index=False)
