@@ -7,6 +7,7 @@ Created on Tue Mar 31 12:54:56 2015
 
 import os
 import numpy as np
+import pandas as pd
 
 
 def get_clust_info(subj_list, conditions, maskname, method='mean'):
@@ -50,5 +51,5 @@ if __name__ == "__main__":
     print os.getcwd()
     conditions = range(1, 5)
     clust_mask = 'neglin_tstat_avg_corrZ_anova_Clust_mask+tlrc.txt'
-    out = get_clust_info(subj_list, conditions, clust_mask)
-    np.savetxt('neglin_tstat_avg_corrZ_anova_Clust_mask+tlrc.cluster_info.txt', out, fmt='%s %d %d %.4f')
+    out = pd.DataFrame(get_clust_info(subj_list, conditions, clust_mask))
+    out.to_csv('neglin_tstat_avg_corrZ_anova_Clust_mask+tlrc.cluster_info.csv')
