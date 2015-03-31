@@ -98,7 +98,7 @@ def maskdump(mask, data_dir, afni_data, outname):
     dump_out = Popen(cmdargs, stdout=PIPE, stderr=PIPE).communicate()
     serr.write(dump_out[1])
     serr.close()
-    f = open('%s' % outname)
+    f = open('%s' % outname, 'w')
     f.write(dump_out[0])
     f.close()
     print 'Finished maskdump -- %s' % time.ctime()
