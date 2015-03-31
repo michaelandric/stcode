@@ -17,13 +17,15 @@ def get_clust_info(subj_list, conditions, maskname, method='mean'):
     :param conditions: This is a list type!
     :param maskname: The cluster mask, gives info what cluster is at what voxel
     :param method: "mean" by default, can also do "median"
+    :returns : numpy array including cols for subj, condition, cluster num, values
     """
-    print 'Getting cluster info'
+    print 'Getting cluster info \nDoing %s' % method
     mask = np.genfromtxt(maskname)   # has ijk + data, so 4 columns total
     mask = mask[:, 3]   # has ijk + data, so 4 columns total
     clusters = np.unique(mask)[np.unique(mask) != 0]
     vals = []
     for ss in subj_list:
+        print 'Getting subject: %s' % ss
         subj_dir = '%s/state/global_connectivity/%s_res/' % (os.environ['t2'], ss)
         for cc in conditions:
             dat_pref = 'avg_corrZ_%d_%s_highres_fnirted_MNI2mm.txt' % (cc, ss)
