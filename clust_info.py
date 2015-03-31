@@ -24,7 +24,7 @@ def get_clust_info(subj_list, conditions, maskname, method='mean'):
     clusters = np.unique(mask)[np.unique(mask) != 0]
     vals = []
     for ss in subj_list:
-        subj_dir = np.genfromtxt('%s/state/global_connectivity/%s_res/' % (os.environ['t2'], ss))
+        subj_dir = '%s/state/global_connectivity/%s_res/' % (os.environ['t2'], ss)
         for cc in conditions:
             dat_pref = 'avg_corrZ_%d_%s_highres_fnirted_MNI2mm.txt' % (cc, ss)
             subj_dat = np.genfromtxt(os.path.join(subj_dir, dat_pref))
