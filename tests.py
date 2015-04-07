@@ -38,7 +38,7 @@ def table_q_nmod_corr(subj_list):
     for ss in enumerate(subj_list):
         subj_dir = '%s/%s/modularity%s' % (os.environ['state_rec'], ss[1], '5p')
         for cc in enumerate(conditions):
-            out_array[ss[0], cc[0]] = ge.q_nmod_corr(ss[1], cc[1], '5p', subj_dir)
+            out_array[ss[0], cc[0]] = ge.q_nmod_corr(ss[1], cc[1], '5p', subj_dir)[0]
 
     return out_array
 
