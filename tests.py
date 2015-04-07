@@ -27,14 +27,27 @@ def snsc_evaluation(ss, outdir, density):
     else:
         return ge.snsc(input1, input2)
 
+
+def table_q_nmod_corr(subj_list):
+    """
+    Make table subjects by conditions
+    of correlation between Q value and number modules (> 1 voxel)
+    """
+    conditions = np.arange(1, 5)
+    out_array = np.zeros(len(subj_list)*len(conditions)).reshape(len(subj_list), len(conditions))
+    for ss in enumerate(subj_list):
+        subj_dir = '%s/%s/modularity%s' % (os.environ['state_rec'], ss[1], '5p')
+        for cc in enumerate(conditions):
+            out_array[ss[0], cc[0]] = ge.q_nmod_corr(ss[1], cc[1], '5p', subj_dir)
+
+    return out_array
+
+
 if __name__ == '__main__':
 
-    subj_list = ['CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW', 'LDMW', 'FLTM', 'EEPA', 'DNLN', 'CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK', 'MRMC', 'MRAG', 'MNGO', 'LRVN']
-    # subj_list= ['ANGO']
-    for ss in subj_list:
-        out_dir = '%s/state/global_connectivity/' % os.environ['t2']
-        input_dir = '%s/%s/corrTRIM_BLUR' % (os.environ['state_rec'], ss)
-        for cc in xrange(1, 5):
-            input_ts = 'cleanTS.%d.%s_graymask_dump' % (cc, ss)
-            out_name = 'avg_corrZ_%d_%s' % (cc, ss)
-            np.savetxt(os.path.join(out_dir, out_name), ge.avg_global_connectivity(os.path.join(input_dir, input_ts)), fmt='%.4f')
+    subj_list = ['ANGO', 'CLFR', 'MYTP', 'TRCO', 'PIGL', 'SNNW', 'LDMW', 'FLTM', 'EEPA', 'DNLN', 'CRFO', 'ANMS', 'MRZM', 'MRVV', 'MRMK', 'MRMC', 'MRAG', 'MNGO', 'LRVN']
+
+    import pandas as pd
+    condition_names = ['HighlyOrdered', 'SomewhatOrdered', 'Random', 'AlmostRandom']
+    q_nmod_corr_out = pd.DataFrame(table_q_nmod_corr(subj_list), index=subj_list, columns=condition_names)
+    q_nmod_corr_out.to_csv('%s/state/q_nmod_corr.csv' % os.environ['t2'])

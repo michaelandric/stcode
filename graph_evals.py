@@ -70,6 +70,25 @@ def n_modules(subjid, cc, dens, iter_max, directory):
     return n_mods
 
 
+def q_nmod_corr(subjid, cc, dens, directory):
+    """
+    Correlate number modules by modularity value
+    """
+    print 'Correlate nmods with modularity -- %s' % time.ctime()
+    import scipy.stats
+    q_vals = np.zeros(100)
+    n_mods = np.zeros(100)
+    for i in xrange(100):
+        fname = 'iter%d.%s.%d.%s_r0.5_linksthresh_proportion.out.Qval' % (i+1, subjid, cc, dens)
+        q_vals[i] = np.genfromtxt(os.path.join(directory, fname))
+        tname = 'iter%d.%s.%d.%s_r0.5_linksthresh_proportion.out.maxlevel_tree' % (i+1, subjid, cc, dens)
+        tree = np.genfromtxt(os.path.join(directory, tname))
+        cnts = np.array(Counter(tree[:, 1]).values())
+        n_mods[i] = len(cnts[np.where(cnts > 1)])
+
+    return scipy.stats.pearsonr(q_vals, n_mods)
+
+
 def snsc(input1, input2):
     """
     Get Single Node Set Consistency (SNSC) between two partitions
