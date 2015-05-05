@@ -11,6 +11,19 @@ import numpy as np
 from collections import Counter
 from shlex import split
 from subprocess import Popen, PIPE
+from sklearn.metrics import normalized_mutual_info_score
+
+
+def normalized_MI(p1, p2):
+    """
+    Return the normalized mutual information
+    across two partitions
+    :param p1: partition 1
+    :param p2; partition 2
+    :return : normalized mutual information score
+    """
+    nmi = normalized_mutual_info_score(p1, p2)
+    return nmi
 
 
 def avg_global_connectivity(inputts, transform=True):
