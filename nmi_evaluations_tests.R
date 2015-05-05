@@ -12,5 +12,8 @@ for (i in 1:dim(combinations)[2])
     print(combinations[, i])
     a <- filter(nn, cond_pair == combinations[, i][1])$nmi
     b <- filter(nn, cond_pair == combinations[, i][2])$nmi
-    print(t.test(a, b, paired = TRUE))
+    # print(t.test(a, b, paired = TRUE))
+    print(t.test(a, b, paired = TRUE)$p.value)
 }
+
+tapply(nmi, cond_pair, mean)
