@@ -28,7 +28,7 @@ def snsc_evaluation(ss, outdir, density):
         return ge.snsc(input1, input2)
 
 
-def nmi_evaluation(ss, density):
+def adjusted_rand_eval(ss, density):
     """
     Evaluate normalized mutual information
     Uses function in 'graph_evals.py'
@@ -36,6 +36,35 @@ def nmi_evaluation(ss, density):
     :param density: corresponding graph density
     :returns : 6 values corresponding to pairwise number of
     conditions (4) at which NMI is tested
+    """
+    print ss
+    subj_dir = '%s/%s/modularity%s' % \
+        (os.environ['state_rec'], ss, density)
+    suffix = 'r0.5_linksthresh_proportion.out.maxlevel_tree'
+    trees = []
+    for i in range(1, 5):
+        q_val, iter_max = ge.max_q(subj_dir, ss, i, density)
+        tname = 'iter%d.%s.%d.%s_%s' % (iter_max, ss, i, density, suffix)
+        input_t = os.path.join(subj_dir, tname)
+        t = np.loadtxt(input_t, dtype=int)[:, 1]
+        trees.append(t)
+
+    combos = [c for c in combinations(range(4), 2)]
+    out = np.empty(len(combos))
+    for i, co in enumerate(combos):
+        print co
+        out[i] = ge.adj_rand(trees[co[0]], trees[co[1]], ss)
+    return out
+
+
+def nmi_evaluation(ss, density):
+    """
+    Evaluate Adjusted Rand Index (ARI)
+    Uses function in 'graph_evals.py'
+    :param ss: Subject identifier
+    :param density: corresponding graph density
+    :returns : 6 values corresponding to pairwise number of
+    conditions (4) at which ARI is tested
     """
     print ss
     subj_dir = '%s/%s/modularity%s' % \
@@ -89,8 +118,8 @@ if __name__ == '__main__':
     out_mat = np.empty(len(subj_list)*len(column_names))
     out_mat = out_mat.reshape(len(subj_list), len(column_names))
     for i, ss in enumerate(subj_list):
-        out_mat[i, :] = nmi_evaluation(ss, '5p')
+        out_mat[i, :] = adjusted_rand_eval(ss, '5p')
 
-    nmi_out_frame = pd.DataFrame(out_mat,
+    ari_out_frame = pd.DataFrame(out_mat,
                                  index=subj_list, columns=column_names2)
-    nmi_out_frame.to_csv('%s/state/nmi_evaluations.csv' % os.environ['t2'])
+    ari_out_frame.to_csv('%s/state/adjrand_evaluations.csv' % os.environ['t2'])

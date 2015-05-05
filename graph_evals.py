@@ -11,7 +11,26 @@ import numpy as np
 from collections import Counter
 from shlex import split
 from subprocess import Popen, PIPE
-from sklearn.metrics import normalized_mutual_info_score
+
+
+def adj_rand(p1, p2, ss):
+    """
+    Return the Adjusted Rand Index
+    across two partitions
+    :param p1: partition 1
+    :param p2; partition 2
+    :return : Adjusted Rand Score
+    """
+    from sklearn.metrics import adjusted_rand_score
+    if len(p1) != len(p2):
+        print 'Subject %s needs a fix' % ss
+        if len(p1) < len(p2):
+            p1 = np.append(p1, p1[len(p1)-1])
+        elif len(p2) < len(p1):
+            p2 = np.append(p2, p2[len(p2)-1])
+
+    ari = adjusted_rand_score(p1, p2)
+    return ari
 
 
 def normalized_MI(p1, p2, ss):
@@ -22,6 +41,7 @@ def normalized_MI(p1, p2, ss):
     :param p2; partition 2
     :return : normalized mutual information score
     """
+    from sklearn.metrics import normalized_mutual_info_score
     if len(p1) != len(p2):
         print 'Subject %s needs a fix' % ss
         if len(p1) < len(p2):
