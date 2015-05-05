@@ -15,3 +15,5 @@ for (i in 1:dim(combinations)[2])
     #print(t.test(a, b, paired = TRUE)$statistic)
     print(t.test(a, b, paired = TRUE)$p.value)
 }
+
+tapply(ajr$ari, ajr$cond_pair, mean)
