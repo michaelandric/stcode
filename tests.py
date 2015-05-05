@@ -83,11 +83,14 @@ if __name__ == '__main__':
     condition_names = ['HighlyOrdered', 'SomewhatOrdered',
                        'Random', 'AlmostRandom']
     column_names = [cc for cc in combinations(condition_names, 2)]
+    column_names2 = []
+    for col in column_names:
+        column_names2.append('_'.join(col))
     out_mat = np.empty(len(subj_list)*len(column_names))
     out_mat = out_mat.reshape(len(subj_list), len(column_names))
     for i, ss in enumerate(subj_list):
         out_mat[i, :] = nmi_evaluation(ss, '5p')
 
     nmi_out_frame = pd.DataFrame(out_mat,
-                                 index=subj_list, columns=column_names)
+                                 index=subj_list, columns=column_names2)
     nmi_out_frame.to_csv('%s/state/nmi_evaluations.csv' % os.environ['t2'])

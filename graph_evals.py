@@ -22,7 +22,7 @@ def normalized_MI(p1, p2, ss):
     :param p2; partition 2
     :return : normalized mutual information score
     """
-    if len(p1) is not len(p2):
+    if len(p1) != len(p2):
         print 'Subject %s needs a fix' % ss
         if len(p1) < len(p2):
             p1 = np.append(p1, p1[len(p1)-1])
