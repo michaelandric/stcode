@@ -37,36 +37,23 @@ def nmi_evaluation(ss, density):
     :returns : 6 values corresponding to pairwise number of
     conditions (4) at which NMI is tested
     """
+    print ss
     subj_dir = '%s/%s/modularity%s' % \
         (os.environ['state_rec'], ss, density)
-    q_val, iter_max1 = ge.max_q(subj_dir, ss, 1, density)
-    q_val, iter_max2 = ge.max_q(subj_dir, ss, 2, density)
-    q_val, iter_max3 = ge.max_q(subj_dir, ss, 3, density)
-    q_val, iter_max4 = ge.max_q(subj_dir, ss, 4, density)
-
-    trees = []
     suffix = 'r0.5_linksthresh_proportion.out.maxlevel_tree'
-    tname_1 = 'iter%d.%s.%d.%s_%s' % (iter_max1, ss, 1, density, suffix)
-    input1 = os.path.join(subj_dir, tname_1)
-    tree1 = np.loadtxt(input1, dtype=int)[:, 1]
-    trees.append(tree1)
-    tname_2 = 'iter%d.%s.%d.%s_%s' % (iter_max1, ss, 2, density, suffix)
-    input2 = os.path.join(subj_dir, tname_2)
-    tree2 = np.loadtxt(input2, dtype=int)[:, 1]
-    trees.append(tree2)
-    tname_3 = 'iter%d.%s.%d.%s_%s' % (iter_max1, ss, 3, density, suffix)
-    input3 = os.path.join(subj_dir, tname_3)
-    tree3 = np.loadtxt(input3, dtype=int)[:, 1]
-    trees.append(tree3)
-    tname_4 = 'iter%d.%s.%d.%s_%s' % (iter_max1, ss, 4, density, suffix)
-    input4 = os.path.join(subj_dir, tname_4)
-    tree4 = np.loadtxt(input4, dtype=int)[:, 1]
-    trees.append(tree4)
+    trees = []
+    for i in range(1, 5):
+        q_val, iter_max = ge.max_q(subj_dir, ss, i, density)
+        tname = 'iter%d.%s.%d.%s_%s' % (iter_max, ss, i, density, suffix)
+        input_t = os.path.join(subj_dir, tname)
+        t = np.loadtxt(input_t, dtype=int)[:, 1]
+        trees.append(t)
 
     combos = [c for c in combinations(range(4), 2)]
     out = np.empty(len(combos))
     for i, co in enumerate(combos):
-        out[i] = ge.normalized_MI(trees[co[0]], trees[co[1]])
+        print co
+        out[i] = ge.normalized_MI(trees[co[0]], trees[co[1]], ss)
     return out
 
 

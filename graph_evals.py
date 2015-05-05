@@ -14,7 +14,7 @@ from subprocess import Popen, PIPE
 from sklearn.metrics import normalized_mutual_info_score
 
 
-def normalized_MI(p1, p2):
+def normalized_MI(p1, p2, ss):
     """
     Return the normalized mutual information
     across two partitions
@@ -22,6 +22,13 @@ def normalized_MI(p1, p2):
     :param p2; partition 2
     :return : normalized mutual information score
     """
+    if len(p1) is not len(p2):
+        print 'Subject %s needs a fix' % ss
+        if len(p1) < len(p2):
+            p1 = np.append(p1, p1[len(p1)-1])
+        elif len(p2) < len(p1):
+            p2 = np.append(p2, p2[len(p2)-1])
+
     nmi = normalized_mutual_info_score(p1, p2)
     return nmi
 
